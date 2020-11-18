@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutt',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -28,10 +28,10 @@ class _InicioState extends State<Inicio> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Mi App"),
+        title: Text("DELIVERY"),
       ),
       body: Center(
-        
+        child: Text('Contenido'),
       ),
     );
   }
