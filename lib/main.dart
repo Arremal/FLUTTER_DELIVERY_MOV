@@ -1,4 +1,6 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_delivery_mov/screens/Main/bodyn.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,31 +10,68 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutt',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Inicio(),
+      title: "Delivery",
+      home: MyHomePage(),
     );
   }
 }
-
-class Inicio extends StatefulWidget {
+class MyHomePage extends StatefulWidget {
   @override
-  _InicioState createState() => _InicioState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _InicioState extends State<Inicio> {
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("DELIVERY"),
+      bottomNavigationBar: CurvedNavigationBar(
+        height: 50,
+        backgroundColor: Colors.white,
+        color: Color(0xFFFF6B01),
+        items: <Widget>[
+          Icon(Icons.home, size: 20,
+            color: Colors.white,
+          ),
+          Icon(Icons.local_dining, size: 20, color: Colors.white),
+          Icon(Icons.view_module, size: 20, color: Colors.white,),
+        ],
+        onTap: (index) {
+          //Handle button tap
+        },
       ),
-      body: Center(
-        child: Text('Contenido'),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage("assets/fondo.jpg")
+          ),
+        ),
+        child: SafeArea(
+          bottom: false,
+          child: Column(
+            children: <Widget>[
+              Nabarr(),
+              Conten(),
+              Stack(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: cardin(),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 290,),
+                    child:  Buttonon(),
+                  ),
+                ],
+              ),
+            ],
+          ),
+
+        ),
       ),
+
+
     );
   }
 }
+
