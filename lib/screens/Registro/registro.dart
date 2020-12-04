@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_delivery_mov/screens/Login/TextFieldWidget.dart';
+import 'package:flutter_delivery_mov/screens/Login/ButtonWidget.dart';
+import 'dateField.dart';
 class Registro extends StatefulWidget {
   @override
   _RegistroState createState() => _RegistroState();
@@ -9,46 +11,75 @@ class _RegistroState extends State<Registro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-      padding: EdgeInsets.all(16),
-      child: Column(children: <Widget>[
-        Text(
-          'Datos Del Paciente', 
-          style: TextStyle(fontSize: 25.0),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: new Center(
+          child: new Text(
+            'REGISTRATE', 
+            textAlign: TextAlign.center, 
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold
+              ),
+            )
           ),
-        TextField(
-          decoration: InputDecoration(labelText: "Apellidos"),
+        ),
+        
+    
+      body: 
+      
+      SafeArea(
+        child: Container(
+          padding: EdgeInsets.all(30),
+      child: Column(
+        children: <Widget>[
+          
+        TextFieldWidget(
+                  hintText: 'Apellidos', obscureData: false,
+                  prefixIconData: Icons.person
         ),
         SizedBox(height: 20.0),
-        TextField(
-          decoration: InputDecoration(labelText: "Nombre"),
+        TextFieldWidget(
+                  hintText: 'Nombres', obscureData: false,
+                  prefixIconData: Icons.person
         ),
         SizedBox(height: 20.0),
-        TextField(
-          decoration: InputDecoration(labelText: "Fecha de Nacimiento"),
+        TextFieldWidget(
+                  hintText: 'Fecha de Nacimiento', obscureData: false,
+                  prefixIconData: Icons.date_range_outlined
         ),
         SizedBox(height: 20.0),
-        TextField(
-          decoration: InputDecoration(labelText: "Celular"),
+        TextFieldWidget(
+                  hintText: 'Celular', obscureData: false,
+                  prefixIconData: Icons.settings_cell_rounded 
         ),
         SizedBox(height: 20.0),
-        TextField(
-          decoration: InputDecoration(labelText: "GENERO"),
+        TextFieldWidget(
+                  hintText: 'Email', obscureData: false,
+                  prefixIconData: Icons.attach_email
         ),
         SizedBox(height: 20.0),
-        TextField(
-          decoration: InputDecoration(labelText: "Email"),
+        TextFieldWidget(
+                  hintText: 'Contraseña', obscureData: false,
+                  prefixIconData: Icons.lock_outline
         ),
         SizedBox(height: 20.0),
-        TextField(
-          decoration: InputDecoration(labelText: "Contraseña"),
+        TextFieldWidget(
+                  hintText: 'Confirmar contraseña', obscureData: false,
+                  prefixIconData: Icons.lock_outline
         ),
-        SizedBox(height: 20.0),
-        TextField(
-          decoration: InputDecoration(labelText: "Confirmar Contraseña"),
-        ),
-        SizedBox(height: 50.0),
-        ],
+        SizedBox(height: 40.0),
+        Center(
+            child: ButtonWidget(
+              title: 'REGISTRARSE',
+              hasBorder: false
+            )
+          )
+        ]
+
+      )
+      
       ),
     )
     );
