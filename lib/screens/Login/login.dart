@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery_mov/screens/Login/ButtonWidget.dart';
 import 'package:flutter_delivery_mov/screens/Login/TextFieldWidget.dart';
+import '../../main.dart';
+import '../Registro/registro.dart';
 
 
 class loginin extends StatefulWidget {
@@ -83,14 +85,20 @@ class _logininState extends State<loginin> {
               ),
               ButtonWidget(
                   title: 'Ingresar',
-                  hasBorder: false
+                  hasBorder: false,
+                  onPressed: () {
+          Navigator.push(context, new MaterialPageRoute(builder: (context) => MyHomePage()));
+        },
               ),
               SizedBox(
                 height: 10.0,
               ),
               ButtonWidget(
                   title: 'Registrate',
-                  hasBorder: true
+                  hasBorder: true,
+                  onPressed: () {
+          Navigator.push(context, new MaterialPageRoute(builder: (context) => Registro()));
+        },
               ),
             ],
           ),

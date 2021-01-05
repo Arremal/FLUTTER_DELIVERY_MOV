@@ -1,6 +1,9 @@
+
+
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'bodyn.dart';
+import '../Perfil/perfil.dart';
 class home extends StatefulWidget {
   @override
   _mainState createState() => _mainState();
@@ -11,14 +14,17 @@ class _mainState extends State<home> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor:  Colors.white,
-        buttonBackgroundColor: Color(0xFFFF6B01),
-        color: Colors.white,
+        height: 50,
+        backgroundColor: Colors.white,
+        color: Color(0xFFFF6B01),
         items: <Widget>[
-          Icon(Icons.home, size: 40, color: Colors.white,
+          Icon(Icons.home, size: 20,
+            color: Colors.white,
           ),
-          Icon(Icons.local_dining, size: 40, color: Colors.black38,),
-          Icon(Icons.view_module, size: 40, color: Colors.black38,),
+          Icon(Icons.local_dining, size: 20, 
+          color: Colors.white),
+          Icon(Icons.view_module, size: 20, 
+          color: Colors.white,),
         ],
         onTap: (index) {
           //Handle button tap
@@ -38,6 +44,11 @@ class _mainState extends State<home> {
         leading: IconButton(
           icon: Icon(Icons.menu,
             color: Colors.black,),
+            onPressed: () {
+              Navigator.push(context, new MaterialPageRoute(
+                builder: (context) => Perfil()
+              ));
+            },
         ),
         actions: <Widget>[
           Padding(
@@ -74,7 +85,7 @@ class body1 extends StatelessWidget {
             child: horizontalList2,
           ),
           cardliston(),
-          letras()
+          // letras()
         ],
       ),
     );
@@ -558,7 +569,7 @@ class cardliston extends StatelessWidget {
     );
   }
 }
-
+/*
 class letras extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -615,4 +626,4 @@ class bottomitems extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container();
   }
-}
+}*/

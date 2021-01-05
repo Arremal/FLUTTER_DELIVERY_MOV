@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_delivery_mov/screens/Login/TextFieldWidget.dart';
 import 'package:flutter_delivery_mov/screens/Login/ButtonWidget.dart';
+import 'package:flutter_delivery_mov/screens/Login/login.dart';
 import 'dateField.dart';
 class Registro extends StatefulWidget {
   @override
@@ -73,7 +74,10 @@ class _RegistroState extends State<Registro> {
         Center(
             child: ButtonWidget(
               title: 'REGISTRARSE',
-              hasBorder: false
+              hasBorder: false,
+              onPressed: () {
+          Navigator.push(context, new MaterialPageRoute(builder: (context) => loginin()));
+        },
             )
           )
         ]

@@ -1,13 +1,17 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_delivery_mov/screens/Login/login.dart';
+import '../Registro/registro.dart';
 
 class ButtonWidget extends StatelessWidget {
 
   final String title;
   final bool hasBorder;
+  final Function onPressed;
+  
 
 
-  ButtonWidget({this.title, this.hasBorder});
+  ButtonWidget({this.title, this.hasBorder, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +27,7 @@ class ButtonWidget extends StatelessWidget {
               : Border.fromBorderSide(BorderSide.none),
         ),
         child: InkWell(
+          onTap: onPressed,
           borderRadius: BorderRadius.circular(10),
           child: Container(
             height: 60.0,
@@ -33,6 +38,7 @@ class ButtonWidget extends StatelessWidget {
                     color: hasBorder ? Color(0xFFFF6B01) : Colors.white,
                     fontWeight: FontWeight.w600,
                     fontSize: 16.0
+                    
                 ),
               ),
             ),

@@ -4,19 +4,21 @@ import 'package:intl/intl.dart';
 class TestPickerWidget extends StatefulWidget {
   @override
   _TestPickerWidgetState createState() => _TestPickerWidgetState();
+  
 }
 
 class _TestPickerWidgetState extends State<TestPickerWidget> {
   
   DateTime _selectedDate;
   TextEditingController _textEditingController = TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: TextField(
-          focusNode: AlwaysDisabledFocusNode(),
+          focusNode:  AlwaysDisabledFocusNode(),
           controller: _textEditingController,
           onTap: () {
             _selectDate(context);
@@ -29,7 +31,7 @@ class _TestPickerWidgetState extends State<TestPickerWidget> {
   _selectDate(BuildContext context) async {
     DateTime newSelectedDate = await showDatePicker(
         context: context,
-        
+          locale: const Locale("es", "ES"),
         initialDate: _selectedDate != null ? _selectedDate : DateTime.now(),
         firstDate: DateTime(2000),
         lastDate: DateTime(2040),
