@@ -9,6 +9,8 @@ import 'package:flutter_delivery_mov/screens/Perfil/container.dart';
 import 'package:flutter_delivery_mov/screens/Perfil/perfil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'screens/Registro/registro.dart';
+import 'screens/Perfil/drawer.dart';
+import 'screens/Producto/viewProd.dart';
 void main() {
   runApp(MyApp());
 }
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
         const Locale('es')
       ],
       title: "Delivery",
-      home: loginin(),
+      home: ProdScreen(),
     );
   }
 }

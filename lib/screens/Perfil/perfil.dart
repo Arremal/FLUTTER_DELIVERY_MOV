@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
-import 'Header.dart';
+import 'drawer.dart';
 
-class Perfil extends StatefulWidget {
+
+class Perfil extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: DrawerPerfil(),
+    );
+  }
+}
+
+/*class Perfil extends StatefulWidget {
   
   @override
   _PerfilState createState() => _PerfilState();
@@ -12,7 +22,7 @@ class _PerfilState extends State<Perfil> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Header(),
+      home: DrawerPerfil(),
     );
   }
-}
+}*/

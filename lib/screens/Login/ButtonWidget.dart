@@ -1,7 +1,4 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_delivery_mov/screens/Login/login.dart';
-import '../Registro/registro.dart';
 
 class ButtonWidget extends StatelessWidget {
 
