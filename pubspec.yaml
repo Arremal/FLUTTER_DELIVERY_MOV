@@ -1,4 +1,4 @@
-name: flutter_delivery_mov
+name: flutter_application_1
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -23,26 +23,40 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  google_maps_flutter: ^0.5.27+3
+  geolocator: ^5.3.1
+  flutter_polyline_points: ^0.2.1
+  geocoding: ^1.0.5
+
+  http: ^0.12.0+1
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
+  animate_do: ^0.1.3
 
 dev_dependencies:
+  curved_navigation_bar: ^0.3.4
   flutter_test:
     sdk: flutter
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/fondo.jpg
+    - assets/fonfin.jpg
+    - assets/calabaza.png
+    - assets/fastcomida.png
+    - assets/comidafon.jpg
+    - assets/perfil.png
+    - assets/man.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
