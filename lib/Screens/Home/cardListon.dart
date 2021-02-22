@@ -70,10 +70,10 @@ class CardListon extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Padding(
+                      /*Padding(
                         padding: EdgeInsets.only(left: 130.0),
                         child:  Buttonheart(),
-                      ),
+                      ),*/
                       Padding(
                         padding: EdgeInsets.only(top:235, left: 77.0),
                         child:  Buttonon(),
@@ -140,10 +140,10 @@ class CardListon extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Padding(
+                     /* Padding(
                         padding: EdgeInsets.only(left: 130.0),
                         child:  Buttonheart(),
-                      ),
+                      ),*/
                       Padding(
                         padding: EdgeInsets.only(top:235, left: 77.0),
                         child:  Buttonon(),
@@ -210,10 +210,10 @@ class CardListon extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Padding(
+                      /*Padding(
                         padding: EdgeInsets.only(left: 130.0),
                         child:  Buttonheart(),
-                      ),
+                      ),*/
                       Padding(
                         padding: EdgeInsets.only(top:235, left: 77.0),
                         child:  Buttonon(),
@@ -280,10 +280,10 @@ class CardListon extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Padding(
+                      /*Padding(
                         padding: EdgeInsets.only(left: 130.0),
                         child:  Buttonheart(),
-                      ),
+                      ),*/
                       Padding(
                         padding: EdgeInsets.only(top:235, left: 77.0),
                         child:  Buttonon(),

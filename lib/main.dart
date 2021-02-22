@@ -7,12 +7,14 @@ import 'package:flutter_application_1/Screens/Producto/Producto.dart';
 import 'Screens/Navigations/NavDrawer.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
+import 'Screens/Ubicacion/ubicacion.dart';
+
 
 void main() => runApp(
   MaterialApp(
     home: BottomNavBar(),
     routes:  {
-       Routes.producto: (context) => Producto(),
+      // Routes.producto: (context) => Producto(),
       },
      ));
 
@@ -28,6 +30,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final Carro _listacarro = Carro();
   final Body _body = Body();
   final Producto _producto = Producto();
+  final Ubicacion _ubicacion = Ubicacion();
   
   Widget _showPage = new Body();
 
@@ -41,6 +44,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
       break;
       case 2:
       return _producto;
+      break;
+      case 3:
+      return _ubicacion;
       break;
       default: 
         return new Container(
@@ -65,6 +71,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           items: <Widget>[
             Icon(Icons.home, size: 30, color: Colors.white,),
             Icon(Icons.shopping_basket, size: 30, color: Colors.white),
+            Icon(Icons.add_location, size: 30, color: Colors.white,),
             Icon(Icons.add_location, size: 30, color: Colors.white,),
           ],
           color: Color(0xFFFF6B01),
@@ -129,7 +136,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             leading: Icon(Icons.create),
             title: Text('Perfil'),
             onTap: () => {
-              Navigator.pushReplacementNamed(context, Routes.producto),
+              //Navigator.pushReplacementNamed(context, Routes.producto),
             },
           ),
           ListTile(

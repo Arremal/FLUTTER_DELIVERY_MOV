@@ -18,6 +18,7 @@ Widget Buttonon(){
     ),
   );
 }
+/*
 
 Widget Buttonheart(){
   IgnorePointer(ignoring: true,);
@@ -35,4 +36,4 @@ Widget Buttonheart(){
       ),
     ),
   );
-}
+}*/

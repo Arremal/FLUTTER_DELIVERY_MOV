@@ -21,7 +21,7 @@ Widget horizontalList2 = new Container(
                     child: Image.asset("assets/calabaza.png",
                       height: 70.0,) ,
                   ),
-                  Text("Vegetables",
+                  Text("Hamburguesas",
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold

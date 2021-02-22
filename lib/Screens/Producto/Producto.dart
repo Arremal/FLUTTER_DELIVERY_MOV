@@ -1,4 +1,4 @@
-/*import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class Producto extends StatelessWidget {
   static const String routeName = '/Producto';
@@ -13,9 +13,9 @@ class Producto extends StatelessWidget {
       ),
     );
   }
-}*/
+}
 
-
+/*
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -169,4 +169,4 @@ class _MapViewState extends State<MapView> {
       ),
     );
   }
-}
+}*/

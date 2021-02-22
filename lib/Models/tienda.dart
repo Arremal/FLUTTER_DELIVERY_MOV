@@ -1,4 +1,5 @@
-import 'package:flutter_application_1/Models/Empresa.dart';
+
+import 'Empresa.dart';
 
 class Tienda{
 
