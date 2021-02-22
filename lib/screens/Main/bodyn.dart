@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../Producto/viewProd.dart';
 
 
 
@@ -84,7 +84,8 @@ class Nabarr extends StatelessWidget {
         title: Text("Ingredients"),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Icon(Icons.arrow_back,),
+        leading: IconButton(onPressed: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => ProdPage())), icon: Icon(Icons.arrow_back)),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 20.0),

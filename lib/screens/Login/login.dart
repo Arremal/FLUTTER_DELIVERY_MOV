@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_delivery_mov/screens/Login/ButtonWidget.dart';
-import 'package:flutter_delivery_mov/screens/Login/TextFieldWidget.dart';
+import 'ButtonWidget.dart';
+import 'TextFieldWidget.dart';
 import '../../main.dart';
 import '../Registro/registro.dart';
 

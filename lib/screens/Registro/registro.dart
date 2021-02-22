@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_delivery_mov/screens/Login/TextFieldWidget.dart';
-import 'package:flutter_delivery_mov/screens/Login/ButtonWidget.dart';
-import 'package:flutter_delivery_mov/screens/Login/login.dart';
+import '../Login/TextFieldWidget.dart';
+import '../Login/ButtonWidget.dart';
+import '../Login/login.dart';
 import 'dateField.dart';
 class Registro extends StatefulWidget {
   @override

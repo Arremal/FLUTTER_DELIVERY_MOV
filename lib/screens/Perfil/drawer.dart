@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Screens/Producto/Producto.dart';
 
 class DrawerPerfil extends StatelessWidget {
   @override
@@ -40,12 +41,29 @@ class DrawerPerfil extends StatelessWidget {
                 ),
               ),
             ),
-            CustomListTile(Icons.home,'Inicio',()=>{}),
-            CustomListTile(Icons.settings,'Ajustes de Cuenta',()=>{}),
-            CustomListTile(Icons.map_sharp,'Mis Direcciones',()=>{}),
-            CustomListTile(Icons.circle,'Mis Puntos',()=>{}),
+            CustomListTile(
+              Icons.home,
+              'Home',
+              () => {},
+            ),
+            CustomListTile(
+              Icons.settings,
+              'Ajustes de Cuenta',
+              ()=>{}
+            ),
+            CustomListTile(
+              Icons.map_sharp,
+              'Mis Direcciones',
+              ()=>{
+                Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context){
+                return Producto();
+              }))}
+            ),
+            CustomListTile(Icons.create,'Perfil',()=>{}),
             CustomListTile(Icons.shopping_cart,'Mis Pedidos',()=>{}),
-            CustomListTile(Icons.timer,'Cupones',()=>{}),
+            CustomListTile(Icons.favorite,'Mis favoritos',()=>{}),
+            CustomListTile(Icons.exit_to_app, 'Logout', () => {Navigator.of(context).pop()})
           ],  
         )
     );

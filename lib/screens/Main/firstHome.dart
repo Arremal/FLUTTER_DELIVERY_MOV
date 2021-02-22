@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import '../Producto/viewProd.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -48,7 +49,11 @@ class _HomeState extends State<Home> {
                         borderRadius: BorderRadius.circular(15.0),
                         border:
                             Border.all(color: Colors.grey[300], width: 2.0)),
-                    child: Icon(Icons.shopping_basket),
+                    child: IconButton(
+                      icon: Icon(Icons.my_location),
+                      onPressed: () => MapsLauncher.launchCoordinates(
+                   -12.109618905614093, -77.0059243807537, 'Google Headquarters are here'),
+                    ),
                   )
                 ],
               ),
@@ -78,7 +83,7 @@ class _HomeState extends State<Home> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "10-minute\ndelivery",
+                            "Delivery\na 10 min",
                             style: TextStyle(
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.bold,
@@ -88,7 +93,7 @@ class _HomeState extends State<Home> {
                             height: width / 30,
                           ),
                           Text(
-                            "Enjoy your food in just 10\nminutes. Free Forever",
+                            "Disfruta tu comida en solo 10\nminutos. Sino es gratis",
                             style: TextStyle(color: Colors.grey),
                           ),
                         ],
@@ -117,7 +122,7 @@ class _HomeState extends State<Home> {
               padding: EdgeInsets.all(
                 20.0,
               ),
-              child: Text("Explore cuisines",
+              child: Text("Recomendamos:",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   )),
@@ -132,10 +137,10 @@ class _HomeState extends State<Home> {
                   Padding(
                     padding: EdgeInsets.only(left: 20.0),
                     child:
-                        pizzaTabs("Italian", "34", "assets/pizza.png"),
+                        pizzaTabs("Italiana", "34", "assets/pizza.png"),
                   ),
-                  pizzaTabs("Mexican", "24", "assets/pizza2.png"),
-                  pizzaTabs("American", "21", "assets/pizza.png")
+                  pizzaTabs("Mexicana", "24", "assets/pizza2.png"),
+                  pizzaTabs("Americana", "21", "assets/pizza.png")
                 ],
               ),
             ),
@@ -150,11 +155,11 @@ class _HomeState extends State<Home> {
               ),
               child: Row(
                 children: [
-                  Text("Restaurants in ",
+                  Text("Restaurantes en ",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       )),
-                  Text("Los Angeles ,California",
+                  Text("Lima ,Metropolitana",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Color.fromRGBO(215, 153, 79, 1)))
@@ -172,10 +177,10 @@ class _HomeState extends State<Home> {
                   Padding(
                       padding: EdgeInsets.only(left: 20.0),
                       child: restaurantsTabs("https://rb.gy/wqz3ug",
-                          "Pizzeria Mazza", "Italian", "4.9km")),
+                          "Pizzeria Domo", "Italiana", "4.9km")),
                   restaurantsTabs(
-                      "https://rb.gy/two7g2", "Taco Land", "Mexican", "3.2km"),
-                  restaurantsTabs("https://rb.gy/zt8plw", "Continental Cui",
+                      "https://rb.gy/two7g2", "Tacos México", "Mexicana", "3.2km"),
+                  restaurantsTabs("https://rb.gy/zt8plw", "Shorton",
                       "Cuisine", "4.9km")
                 ],
               ),
@@ -183,29 +188,7 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 0.0,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                color: Colors.green,
-              ),
-              label: ""),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.circle,
-                color: Colors.grey[400],
-              ),
-              label: ""),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-                color: Colors.grey[400],
-              ),
-              label: ""),
-        ],
-      ),
+      
     );
   }
 
@@ -242,7 +225,7 @@ class _HomeState extends State<Home> {
                   height: 5.0,
                 ),
                 Text(
-                  "$dish - $diatance - \$-10",
+                  "$dish - $diatance - \S/.10",
                   style: TextStyle(
                     color: Colors.grey[500],
                   ),
@@ -275,7 +258,7 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: 5.0,
             ),
-            Text("$no restaurants", style: TextStyle(color: Colors.grey)),
+            Text("$no restaurantes", style: TextStyle(color: Colors.grey)),
             SizedBox(
               height: 10.0,
             ),

@@ -1,9 +1,8 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import '../Perfil/drawer.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import '../Producto/viewProd.dart';
+import 'detailProd.dart';
+import '../Home/texti.dart';
 
 class ProdPage extends StatefulWidget {
   @override
@@ -50,6 +49,11 @@ class _ProdPageState extends State<ProdPage> {
                 _openDrawer();
               },
               )
+            ),
+            Positioned(
+              top: 10.0,
+              right: 25.0,
+              child: Texti(),
             )
           ],
         ) 
@@ -138,6 +142,9 @@ class _ProdPageState extends State<ProdPage> {
       child: Container(
       height: 100.0,
       width: width - 40.0,
+      child: GestureDetector(
+         onTap: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => ProdDetail())),
       child: Stack(
         children: [
           Padding(
@@ -192,7 +199,9 @@ class _ProdPageState extends State<ProdPage> {
             ) 
           ),
         ],
+        
       ),
+      )
     )
     
     );
