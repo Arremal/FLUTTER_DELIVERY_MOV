@@ -1,48 +1,25 @@
-import 'dart:convert';
+/*import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter_application_1/Common/Constantes.dart';
 import 'package:flutter_application_1/Models/tienda.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_application_1/Services/Client/TiendaClient.dart';
 
 class TiendaService{
 
-  /*static Future listarTiendas(){
-    var url = Constantes.URL_BACK + "api/tiendas/listar";
-    print(Constantes.URL_BACK);
-    return http.get(url);
-  }*/
+  TiendaClient tiendaClient = TiendaClient() ;
+  final url = 'api/tiendas/listar';
 
-  /*Future<http.Response> listarTiendas(http.Client client) async {
-    return client.get(Constantes.URL_BACK + "api/tiendas/listar");
-  }*/
+  Future<TiendaResponse> tienda() async {
+    GenericResponse response = await tiendaClient.get(url);
+    return _tiendaResponseFromJson((response.estado==0) ? response.aaData : null, response.estado, response.msg);
 
-  /*Future<List<Tienda>> listarTiendas(http.Client client) async {
-  final response =
-      await client.get(Constantes.URL_BACK + 'api/tiendas/listar');
-      return compute(parseTienda, response.body);
   }
 
-  List<Tienda> parseTienda(String responseBody) {
-  final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
-
-  return parsed.map<Tienda>((json) => Tienda.fromJson(json)).toList();
-}*/
-
-
-Future<Tienda> listarTiendas() async {
-  final response = await http.get(Constantes.URL_BACK + 'api/tiendas/listar');
-  print(response.toString());
-  return Tienda.fromJson(jsonDecode(response.body));
-
-  /*print(response);
-  if (response.statusCode == 200) {
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load album');
-  }*/
+   TiendaResponse _tiendaResponseFromJson(String json,int estado, String msg) {
+    var tiendaResponse = new TiendaResponse();
+    tiendaResponse.tienda = (json != null) ? (jsonDecode(json) as List).map((tienda) => Tienda.fromMap(tienda)).toList() : [];
+    tiendaResponse.estado = estado;
+    tiendaResponse.msg = msg;
+    return tiendaResponse ;
+  }
 }
-
-
-}
+*/

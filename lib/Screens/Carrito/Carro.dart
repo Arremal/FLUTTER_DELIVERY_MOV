@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Screens/Home/TexiInformacion.dart';
 
 class Carro extends StatefulWidget {
   Carro({Key key}) : super(key: key);
@@ -65,7 +66,7 @@ class contin extends StatelessWidget {
         children: <Widget>[
           Container(
               width: MediaQuery.of(context).size.width*0.20,
-              child: Image.asset("assest/comidafon.jpg")),
+              child: Image.asset("assets/comida.png")),
           SizedBox(
             width: 10.0,
           ),
@@ -82,7 +83,12 @@ class contin extends StatelessWidget {
                           fontWeight: FontWeight.bold
                       )),
                 ),
-                Text("Lorem ipsum dolor sit amet, quis nostrud "),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text("Nombre Tienda",
+                  ),
+                ),
+                textoCard("S/.5",17.0,FontWeight.bold)
               ],
             ),
           ),

@@ -14,7 +14,7 @@ void main() => runApp(
   MaterialApp(
     home: BottomNavBar(),
     routes:  {
-      // Routes.producto: (context) => Producto(),
+       //Routes.producto: (context) => Producto(),
       },
      ));
 
@@ -84,14 +84,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
               _showPage = BounceInRight(child: _pageChooser(tappedIndex)); 
             });
           },
-          //letIndexChange: (index) => true,
         ),
-
-
         body: _showPage,
-
-        //drawer: NavDrawer(),
-////////////////////////////////////////////////////////////////////////////
+/*
         drawer: Drawer(
           child: ListView(
           padding: EdgeInsets.zero,
@@ -118,10 +113,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
     ),
   ),
 ),
-
-
-
-
           ListTile(
             leading: Icon(Icons.home),
             title: Text('Home'),
@@ -162,7 +153,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ],
       ),
 
-        ),
+        ),*/
 ///
 ///
 ///
@@ -171,16 +162,16 @@ class _BottomNavBarState extends State<BottomNavBar> {
         iconTheme: IconThemeData(color: Colors.black),
         centerTitle: true,
         backgroundColor: Color(0xFFFAFAFA),
-        title: Text("Home",
+        /*title: Text("Home",
           style: TextStyle(
             color: Colors.black,
           ),
-        ),
-        elevation: 0.0,
-        /*leading: Icon(
-          Icons.menu,
-          color: Colors.black,
         ),*/
+        elevation: 0.0,
+        leading: Icon(
+          Icons.supervised_user_circle_sharp,
+          color: Colors.black,
+        ),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 20.0),
@@ -198,137 +189,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
         );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-void main() => runApp(MyApp());
-
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  //int _page = 0;
-  int pageIndex =0;
-
-  final Carro _listacarro = Carro();
-  final Body _body = Body();
-
-  Widget _showPage = new Body();
-  Widget _pageChooser(int page){
-    switch(page){
-      case 0:
-        return _body;
-        break;
-      case 1:
-        return _listacarro;
-        break;
-      default: 
-        return new Container(
-          child: Center(
-            child: new Text(
-              "No se encontro nada"
-            ),
-          ),
-        );
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: CurvedNavigationBar(
-        index: pageIndex,
-        items: <Widget>[
-          Icon(Icons.local_dining, size: 20, color: Colors.white,),
-          Icon(Icons.home, size: 20, color: Colors.white),
-          Icon(Icons.view_module, size: 20, color: Colors.white,),
-        ],
-        color: Color(0xFFFF6B01),
-        backgroundColor: Colors.white,
-        animationCurve: Curves.easeInOut,
-        animationDuration: Duration(milliseconds: 600),
-        onTap: (int tappedIndex) {
-          setState(() {
-              _showPage = _pageChooser(tappedIndex);
-            });
-        },
-      ),
-      //title: 'Delivery',
-      //home: MyHomePage(),
-      body: _showPage,
-    );
-  }
-}
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 class MyHomePage extends StatelessWidget {
@@ -372,26 +232,6 @@ class MyHomePage extends StatelessWidget {
       drawer: NavDrawer(),
 
       bottomNavigationBar: BottomNavBar()
-      /*CurvedNavigationBar(
-        key: _bottomNavigationKey,
-        height: 50,
-        backgroundColor: Colors.white,
-        color: Color(0xFFFF6B01),
-        items: <Widget>[
-          Icon(Icons.local_dining, size: 20,
-            color: Colors.white,
-          ),
-          Icon(Icons.home, size: 20, 
-          color: Colors.white),
-          Icon(Icons.view_module, size: 20, 
-          color: Colors.white,),
-        ],
-        index: 1,
-        onTap: (index) {
-          debugPrint("current index: + $index");
-          //Handle button tap
-        },
-      ),*/
     );
   }
 }
