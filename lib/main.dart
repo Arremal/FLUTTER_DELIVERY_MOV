@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Routes/Routes.dart';
 import 'package:flutter_application_1/Screens/Carrito/Carro.dart';
 import 'package:flutter_application_1/Screens/Home/body.dart';
+import 'package:flutter_application_1/Screens/Home/inicio.dart';
 import 'package:flutter_application_1/Screens/Producto/Producto.dart';
 import 'Screens/Navigations/NavDrawer.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -13,10 +14,10 @@ import 'Screens/Ubicacion/ubicacion.dart';
 void main() => runApp(
   MaterialApp(
     home: BottomNavBar(),
-    routes:  {
-       //Routes.producto: (context) => Producto(),
-      },
-     ));
+    routes: <String, WidgetBuilder> {
+      '/a': (BuildContext context) => Producto(),
+    },
+  ));
 
 class BottomNavBar extends StatefulWidget {
   @override
@@ -29,8 +30,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   final Carro _listacarro = Carro();
   final Body _body = Body();
-  final Producto _producto = Producto();
+  final NavDrawer _navDrawer = NavDrawer();
   final Ubicacion _ubicacion = Ubicacion();
+
+  var keygeneral ;
   
   Widget _showPage = new Body();
 
@@ -43,10 +46,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
       return _listacarro;
       break;
       case 2:
-      return _producto;
+      return _ubicacion;
       break;
       case 3:
-      return _ubicacion;
+      return _navDrawer;
       break;
       default: 
         return new Container(
@@ -72,7 +75,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             Icon(Icons.home, size: 30, color: Colors.white,),
             Icon(Icons.shopping_basket, size: 30, color: Colors.white),
             Icon(Icons.add_location, size: 30, color: Colors.white,),
-            Icon(Icons.add_location, size: 30, color: Colors.white,),
+            Icon(Icons.clear_all, size: 30, color: Colors.white,),
           ],
           color: Color(0xFFFF6B01),
           backgroundColor: Colors.white,
@@ -86,6 +89,87 @@ class _BottomNavBarState extends State<BottomNavBar> {
           },
         ),
         body: _showPage,
+/////////////////////////////////////////////////////////////////////
+        appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        centerTitle: true,
+        backgroundColor: Color(0xFFFAFAFA),
+        /*title: Text("Home",
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),*/
+        elevation: 0.0,
+        leading: Icon(
+          Icons.supervised_user_circle_sharp,
+          color: Colors.black,
+        ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: IconButton(
+              color: Colors.black,
+              icon: const Icon(Icons.add_alert),
+              tooltip: 'Show Snackbar',
+              onPressed: () {
+              },
+            ),
+          )
+        ],
+      ),
+        
+        );
+  }
+}
+
+/*
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xFFFAFAFA),
+
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        centerTitle: true,
+        backgroundColor: Color(0xFFFAFAFA),
+        title: Text("Home",
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        elevation: 0.0,
+        /*leading: Icon(
+          Icons.menu,
+          color: Colors.black,
+        ),*/
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: IconButton(
+              color: Colors.black,
+              icon: const Icon(Icons.add_alert),
+              tooltip: 'Show Snackbar',
+              onPressed: () {
+              },
+            ),
+          )
+        ],
+      ),
+
+      body: Container(
+        
+      ),
+
+      drawer: NavDrawer(),
+
+      bottomNavigationBar: BottomNavBar()
+    );
+  }
+}*/
+
+
+////
 /*
         drawer: Drawer(
           child: ListView(
@@ -157,81 +241,3 @@ class _BottomNavBarState extends State<BottomNavBar> {
 ///
 ///
 ///
-/////////////////////////////////////////////////////////////////////
-        appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
-        centerTitle: true,
-        backgroundColor: Color(0xFFFAFAFA),
-        /*title: Text("Home",
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),*/
-        elevation: 0.0,
-        leading: Icon(
-          Icons.supervised_user_circle_sharp,
-          color: Colors.black,
-        ),
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 20.0),
-            child: IconButton(
-              color: Colors.black,
-              icon: const Icon(Icons.add_alert),
-              tooltip: 'Show Snackbar',
-              onPressed: () {
-              },
-            ),
-          )
-        ],
-      ),
-        
-        );
-  }
-}
-
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFFAFAFA),
-
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
-        centerTitle: true,
-        backgroundColor: Color(0xFFFAFAFA),
-        title: Text("Home",
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
-        elevation: 0.0,
-        /*leading: Icon(
-          Icons.menu,
-          color: Colors.black,
-        ),*/
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 20.0),
-            child: IconButton(
-              color: Colors.black,
-              icon: const Icon(Icons.add_alert),
-              tooltip: 'Show Snackbar',
-              onPressed: () {
-              },
-            ),
-          )
-        ],
-      ),
-
-      body: Container(
-        
-      ),
-
-      drawer: NavDrawer(),
-
-      bottomNavigationBar: BottomNavBar()
-    );
-  }
-}

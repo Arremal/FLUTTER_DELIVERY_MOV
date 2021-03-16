@@ -1,84 +1,112 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Routes/Routes.dart';
+import 'package:flutter_application_1/Screens/Home/TexiInformacion.dart';
 import 'package:flutter_application_1/Screens/Producto/Producto.dart';
 
 class NavDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: ListView(
+    return ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          DrawerHeader(
-            child: Row(
-              children: [
-                Image(
-                  image: AssetImage('assets/man.png',),
-                  width: MediaQuery.of(context).size.width * 0.2),
-                Padding(
-                  padding: const EdgeInsets.only(top:15.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'El Pepe',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                      Text(
-                        'Mis apellidos',
-                        style: TextStyle(color: Colors.white, fontSize: 25),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0, bottom: 5.0, top: 15.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(40), bottomLeft: Radius.circular(40))
+              ),
+              child: ListTile(
+                leading: Icon(Icons.settings,),
+                title: Text('Ajustes'),
+                onTap: () => {
+                  
+                  Navigator.pushNamed(context, '/a'),
+                  /*Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context){
+                    return Producto();
+                  }))*/
+                },
+              ),
             ),
-            decoration: BoxDecoration(
-                color: Colors.orange,
-               /* image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage('assets/fonfin.jpg'))*/
-                    ),
           ),
-          ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Home'),
-            onTap: () => {
-              Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context){
-                return Producto();
-              }))
-            },
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0, bottom: 5.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(40), bottomLeft: Radius.circular(40))
+              ),
+              child: ListTile(
+                leading: Icon(Icons.settings_applications),
+                title: Text('Opciones Avanzadas'),
+                onTap: () => {
+                  Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context){
+                    return Producto();
+                  }))
+                },
+              ),
+            ),
           ),
-          ListTile(
-            leading: Icon(Icons.create),
-            title: Text('Perfil'),
-            onTap: () => {Navigator.of(context).pop()},
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0, bottom: 5.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(40), bottomLeft: Radius.circular(40))
+              ),
+              child: ListTile(
+                leading: Icon(Icons.history),
+                title: Text('Historial de compras'),
+                onTap: () => {
+                  Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context){
+                    return Producto();
+                  }))
+                },
+              ),
+            ),
           ),
-          ListTile(
-            leading: Icon(Icons.shopping_bag),
-            title: Text('Mis compras'),
-            onTap: () => {
-              
-            },
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0, bottom: 5.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(40), bottomLeft: Radius.circular(40))
+              ),
+              child: ListTile(
+                leading: Icon(Icons.favorite),
+                title: Text('Mis favoritos'),
+                onTap: () => {
+                  Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context){
+                    return Producto();
+                  }))
+                },
+              ),
+            ),
           ),
-          ListTile(
-            leading: Icon(Icons.favorite),
-            focusColor: Colors.black,
-            title: Text('Mis favoritos'),
-            onTap: () => {
-
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text('Logout'),
-            onTap: () => {Navigator.of(context).pop()},
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0, bottom: 5.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(40), bottomLeft: Radius.circular(40))
+              ),
+              child: ListTile(
+                leading: Icon(Icons.message),
+                title: Text('Noticias'),
+                onTap: () => {
+                  Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context){
+                    return Producto();
+                  }))
+                },
+              ),
+            ),
           ),
         ],
-      ),
-
-      
-    );
+      );
   }
 }
+

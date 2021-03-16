@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Screens/Producto/Producto.dart';
-import 'package:flutter_application_1/Services/TiendaService.dart';
+import 'package:flutter_application_1/Models/ProductoModel.dart';
+import 'package:flutter_application_1/Services/ProductoService.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-  class Tiendita extends StatefulWidget {
-    Tiendita({Key key}) : super(key: key);
+class ProductoList extends StatefulWidget {
+  ProductoList(datin,{Key key}) : super(key: key);
+
+  @override
+  _ProductoListState createState() => _ProductoListState();
+}
+
+class _ProductoListState extends State<ProductoList> {
   
-    @override
-    _TienditaState createState() => _TienditaState();
-  }
-  
-  class _TienditaState extends State<Tiendita> {
-    
+  int variable;
   @override
   void initState() {
-   fetchListaTiendas();
+   fetchListaProductoXTienda(1);
     super.initState();
   }
- 
-    @override
-    Widget build(BuildContext context) {
-      return FutureBuilder<List<dynamic>>(
-        future: fetchListaTiendas(),
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<dynamic>>(
+        future: fetchListaProductoXTienda(variable),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
@@ -42,12 +42,11 @@ import 'package:google_fonts/google_fonts.dart';
                             radius: 30,
                             backgroundImage: NetworkImage('https://picsum.photos/250?image=9')
                           ),
-                          title: Text(snapshot.data[index]['snombreTienda'], style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.bold, color: Colors.black),),
-                          subtitle: Text(snapshot.data[index]['sdireccion'], style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.normal, color: Colors.black38),),
+                          title: Text(snapshot.data[index]['snombre'], style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.bold, color: Colors.black),),
+                          subtitle: Text(snapshot.data[index]['sdescripcion'], style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.normal, color: Colors.black38),),
                           trailing: IconButton(icon: Icon(Icons.navigate_next,color: Colors.black,),
                           onPressed: () {
-                            Navigator.push( context, MaterialPageRoute(builder: (context) => Producto(todo: snapshot.data[index]['iidTienda'],)));
-                            //RouteSettings(arguments: ProductoModel())
+                            //Navigator.push( context, MaterialPageRoute(builder: (context) => Producto()));
                           }
                             )
                         ),
@@ -66,4 +65,4 @@ import 'package:google_fonts/google_fonts.dart';
     }
       );
   }
-  }
+}

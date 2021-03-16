@@ -18,22 +18,22 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return ListView(
-          children: [
-            informacion("Hoy es especial", 25.0, FontWeight.bold),
-          informacion("Comida Fresca", 15.0, FontWeight.normal),
-          SizedBox(height: 10.0,),
-          Padding(
-            padding: EdgeInsets.only(left: 20.0, right: 20.0),
-            child: horizontalList2,
-          ),
-          CardListon(),
-          informacion('Tiendas', 20.0, FontWeight.bold),
-          //HomeScreen(),
-          Container(
-            height: MediaQuery.of(context).size.height, // give it a fixed height constraint
-            child: Tiendita(),)
-          //Tiendita()
-          ],);
+            children: [
+              informacion("Hoy es especial", 25.0, FontWeight.bold),
+            informacion("Comida Fresca", 15.0, FontWeight.normal),
+            SizedBox(height: 10.0,),
+            Padding(
+              padding: EdgeInsets.only(left: 20.0, right: 20.0),
+              child: horizontalList2,
+            ),
+            CardListon(),
+            informacion('Tiendas', 20.0, FontWeight.bold),
+            //HomeScreen(),
+            Container(
+              height: MediaQuery.of(context).size.height, // give it a fixed height constraint
+              child: Tiendita(),)
+            //Tiendita()
+            ],);
     /*Container(
       child: Padding(
             padding: const EdgeInsets.only(bottom: 20.0),

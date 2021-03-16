@@ -1,25 +1,133 @@
 import 'package:flutter/material.dart';
 
-class Producto extends StatelessWidget {
-  static const String routeName = '/Producto';
+import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Models/ProductoModel.dart';
+import 'package:flutter_application_1/Screens/Producto/productolist.dart';
+import 'package:flutter_application_1/Services/ProductoService.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-  const Producto({Key key}) : super(key: key);
+class Producto extends StatelessWidget {
+  
+  static const String routeName = '/Producto';
+  final int todo;
+  const Producto({Key key,@required this.todo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(
-        "producto"
+    return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        centerTitle: true,
+        backgroundColor: Color(0xFFFAFAFA),
+        title: Text("Productos",
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        elevation: 0.0,
+        leading: IconButton(icon: Icon(Icons.navigate_before_sharp,color: Colors.black,),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }
+                )
+      ),
+      body: Container(
+        child: 
+        FutureBuilder<List<dynamic>>(
+        future: fetchListaProductoXTienda(todo),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              scrollDirection: Axis.vertical,
+              itemCount: snapshot.data.length,
+              itemBuilder: (context, index){
+                return Padding(
+                  padding: const EdgeInsets.only(right: 8.0,left: 8.0,top: 2.0),
+                  child: Card(
+                    elevation: 0.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    child: Column( 
+                      children: [
+                        ListTile(
+                          leading: CircleAvatar(
+                            radius: 30,
+                            backgroundImage: NetworkImage('https://picsum.photos/250?image=9')
+                          ),
+                          title: Text(snapshot.data[index]['snombre'], style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.bold, color: Colors.black),),
+                          subtitle: Text(snapshot.data[index]['sdescripcion'], style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.normal, color: Colors.black38),),
+                          trailing: IconButton(icon: Icon(Icons.navigate_next,color: Colors.black,),
+                          onPressed: () {
+                            //Navigator.push( context, MaterialPageRoute(builder: (context) => Producto()));
+                          }
+                            )
+                        ),
+                      ]
+                    ),
+                  ),
+                );
+              },
+            );
+          }
+          else if (snapshot.hasError) {
+            print("${snapshot.error}");
+            return Text("${snapshot.error}");
+          } 
+          return CircularProgressIndicator();
+    }
+      )
+
+        //ProductoList(todo)
       ),
     );
   }
 }
 
-/*
-import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+/*class Producto extends StatefulWidget {
+  static const String routeName = '/Producto';
+  final int todo;
+
+  const Producto({Key key,@required this.todo}) : super(key: key);
+
+  @override
+  _ProductoState createState() => _ProductoState();
+}
+
+class _ProductoState extends State<Producto> {
+  int idTienda;
+  @override
+  Widget build(BuildContext context) {
+    
+    return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        centerTitle: true,
+        backgroundColor: Color(0xFFFAFAFA),
+        title: Text("Productos",
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        elevation: 0.0,
+        leading: IconButton(icon: Icon(Icons.navigate_before_sharp,color: Colors.black,),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }
+                )
+      ),
+      body: Container(
+        child: ProductoList(todo)
+      ),
+    );
+  }
+} */
+
+
+/*
 CameraPosition _initialLocation = CameraPosition(target: LatLng(0.0, 0.0));
 final Geolocator _geolocator = Geolocator();
 

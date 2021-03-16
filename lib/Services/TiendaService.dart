@@ -1,25 +1,18 @@
-/*import 'dart:convert';
+import 'dart:convert';
 
-import 'package:flutter_application_1/Models/tienda.dart';
-import 'package:flutter_application_1/Services/Client/TiendaClient.dart';
+import 'package:flutter_application_1/Common/Constantes.dart';
+import 'package:http/http.dart' as http;
 
-class TiendaService{
+String url = Constantes.URL_BACK+'tiendas/listar';
 
-  TiendaClient tiendaClient = TiendaClient() ;
-  final url = 'api/tiendas/listar';
+///---------------------LISTAR TIENDAS---------------------------
 
-  Future<TiendaResponse> tienda() async {
-    GenericResponse response = await tiendaClient.get(url);
-    return _tiendaResponseFromJson((response.estado==0) ? response.aaData : null, response.estado, response.msg);
-
-  }
-
-   TiendaResponse _tiendaResponseFromJson(String json,int estado, String msg) {
-    var tiendaResponse = new TiendaResponse();
-    tiendaResponse.tienda = (json != null) ? (jsonDecode(json) as List).map((tienda) => Tienda.fromMap(tienda)).toList() : [];
-    tiendaResponse.estado = estado;
-    tiendaResponse.msg = msg;
-    return tiendaResponse ;
-  }
+Future<List<dynamic>> fetchListaTiendas() async{
+  final response = await http.get(url);
+  if(response.statusCode == 200){
+    final data = json.decode(response.body);
+    return data['aaData'];
+   }else{
+     throw Exception('Fallo que pena');
+   }
 }
-*/
