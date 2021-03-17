@@ -1,6 +1,6 @@
 class Constantes{
 
-  static final String URL_BACK = "http://64.227.109.195:3002/api/";
+  static final String URL_BACK = "http://64.227.109.195:3002/";
   static final String KEY_TOKEN = "KEY_TOKEN";
   static final String KEY_EMAIL = "KEY_EMAIL";
   static final String KEY_CONTRASENA = "KEY_CONTRASENA";

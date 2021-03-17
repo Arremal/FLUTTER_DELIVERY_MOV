@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:flutter_application_1/Common/Constantes.dart';
 import 'package:http/http.dart' as http;
 
-String url = Constantes.URL_BACK+'productos/listarProductoPorEmpresa';
+String url = Constantes.URL_BACK+'api/tiendasProducto/listarProductoPorIdTienda';
+String urldos = Constantes.URL_BACK+'api/productos/listarProductoPorEmpresa';
 
 ///---------------------LISTAR PRODUCTO POR TIENDA---------------------------
 
@@ -18,3 +19,5 @@ Future<List<dynamic>> fetchListaProductoXTienda(int id) async{
      throw Exception('Fallo que pena');
    }
 }
+
+///--------------------LISTAR PRODUCTO POR EMPRESA-----------------------------

@@ -27,6 +27,18 @@ class Producto extends StatelessWidget {
           ),
         ),
         elevation: 0.0,
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: IconButton(
+              color: Colors.black,
+              icon: const Icon(Icons.shopping_basket),
+              tooltip: 'Productos seleccionados',
+              onPressed: () {
+              },
+            ),
+          )
+        ],
         leading: IconButton(icon: Icon(Icons.navigate_before_sharp,color: Colors.black,),
                   onPressed: () {
                     Navigator.pop(context);
@@ -61,9 +73,8 @@ class Producto extends StatelessWidget {
                           subtitle: Text(snapshot.data[index]['sdescripcion'], style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.normal, color: Colors.black38),),
                           trailing: IconButton(icon: Icon(Icons.navigate_next,color: Colors.black,),
                           onPressed: () {
-                            //Navigator.push( context, MaterialPageRoute(builder: (context) => Producto()));
                           }
-                            )
+                            ),
                         ),
                       ]
                     ),

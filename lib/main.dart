@@ -13,6 +13,7 @@ import 'Screens/Ubicacion/ubicacion.dart';
 
 void main() => runApp(
   MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: BottomNavBar(),
     routes: <String, WidgetBuilder> {
       '/a': (BuildContext context) => Producto(),

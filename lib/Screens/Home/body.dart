@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/Home/TiendaList.dart';
 import 'package:flutter_application_1/Screens/Home/cardListon.dart';
 import 'package:flutter_application_1/Screens/Home/categoria.dart';
+import 'package:flutter_application_1/Services/LoginService.dart';
 
 import 'TexiInformacion.dart';
 

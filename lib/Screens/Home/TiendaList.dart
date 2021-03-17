@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/Producto/Producto.dart';
+import 'package:flutter_application_1/Services/LoginService.dart';
 import 'package:flutter_application_1/Services/TiendaService.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,7 +15,9 @@ import 'package:google_fonts/google_fonts.dart';
     
   @override
   void initState() {
-   fetchListaTiendas();
+    fetchListaTiendas();
+    //login();
+
     super.initState();
   }
  

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter_application_1/Common/Constantes.dart';
 import 'package:http/http.dart' as http;
 
-String url = Constantes.URL_BACK+'tiendas/listar';
+String url = Constantes.URL_BACK+'api/tiendas/listar';
 
 ///---------------------LISTAR TIENDAS---------------------------
 
