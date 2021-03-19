@@ -10,7 +10,9 @@ import 'Provider/CatalogoProvider.dart';
 import 'Screens/Navigations/NavDrawer.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
+import 'Screens/SplashScreen/SplashSreen.dart';
 import 'Screens/Ubicacion/ubicacion.dart';
+import 'Screens/Usuario/Usuario.dart';
 
 
 void main() => runApp(
@@ -20,7 +22,7 @@ void main() => runApp(
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BottomNavBar(),
+      home: Splash(),
       routes: <String, WidgetBuilder> {
         //'/a': (BuildContext context) => Producto(),
       },
@@ -100,55 +102,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ),
         body: _showPage,
 /////////////////////////////////////////////////////////////////////
-        appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
-        centerTitle: true,
-        backgroundColor: Color(0xFFFAFAFA),
-        /*title: Text("Home",
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),*/
-        elevation: 0.0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.supervised_user_circle_sharp,
-            color: Colors.black,
-        ), 
-        onPressed: null),
-        /*leading: Icon(
-          Icons.supervised_user_circle_sharp,
-          color: Colors.black,
-        ),*/
-        actions: <Widget>[
-          IconButton(
-            icon: Stack(
-              overflow: Overflow.visible,
-              children: [
-                Icon(Icons.shopping_basket, color: Colors.black,),
-                Positioned(
-                  right: -10,
-                  top: -10,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.amber,
-                    child: Text(
-                      '${context.watch<CatalogoProvider>().catalogo.length}',
-                      //'$contador',
-                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14.0,
-                    ),
-                  ),
-                  radius: 10.0,
-                ),
-                ),
-              ],
-            ),
-            onPressed: (){
-              Navigator.push( context, MaterialPageRoute(builder: (context) => Carro()));
-            }
-          ),
-          
-        ],
-      ),
         
         );
   }

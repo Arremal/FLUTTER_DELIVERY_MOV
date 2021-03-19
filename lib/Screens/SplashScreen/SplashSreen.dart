@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/Home/body.dart';
 
+import '../../main.dart';
+
 
 class Splash extends StatefulWidget {
   @override
@@ -24,7 +26,7 @@ class VideoState extends State<Splash> with SingleTickerProviderStateMixin{
 
   void navigationPage() {
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => Body()));
+        MaterialPageRoute(builder: (context) => BottomNavBar()));
   }
 
   @override
@@ -60,14 +62,14 @@ class VideoState extends State<Splash> with SingleTickerProviderStateMixin{
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
 
-              Padding(padding: EdgeInsets.only(bottom: 30.0),child:new Image.asset('assets/powered_by.png',height: 25.0,fit: BoxFit.scaleDown,))
+              Padding(padding: EdgeInsets.only(bottom: 30.0),child:new Image.asset('assets/ptech.png',height: 25.0,fit: BoxFit.scaleDown,))
 
             ],),
           new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Image.asset(
-                'assets/devs.jpg',
+                'assets/deliver.png',
                 width: animation.value * 250,
                 height: animation.value * 250,
               ),

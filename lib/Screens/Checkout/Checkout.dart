@@ -45,18 +45,18 @@ class _CheckoutState extends State<Checkout> {
                     ),
                   ),
                   Container(
-                    height: 40.0,
+                    height: 50.0,
                     width: MediaQuery.of(context).size.width,
                     margin: const EdgeInsets.only(top: 10.0, bottom: 15.0),
-                    padding: const EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(7.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      border: Border.all(color: Colors.black, width: 2.0)
-                      //border: BoxBorder()
+                      border: Border.all(color: Colors.black54, width: 2.0)
+                                  //border: BoxBorder()
                     ),
                     child: Text("Mi dirección",
                     style: TextStyle(
-                      color: Colors.black87,
+                      color: Colors.black54,
                       fontSize: 20.0
                     ),),
                   ),
@@ -68,18 +68,18 @@ class _CheckoutState extends State<Checkout> {
                   ),
                 ),
                   Container(
-                    height: 40.0,
+                    height: 50.0,
                     width: MediaQuery.of(context).size.width,
                     margin: const EdgeInsets.only(top: 10.0, bottom: 15.0),
-                    padding: const EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(7.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      border: Border.all(color: Colors.black, width: 2.0)
-                      //border: BoxBorder()
+                      border: Border.all(color: Colors.black54, width: 2.0)
+                                  //border: BoxBorder()
                     ),
                     child: Text("Contra Entrega",
                       style: TextStyle(
-                      color: Colors.black87,
+                      color: Colors.black54,
                       fontSize: 20.0
                     ),),
                   ),

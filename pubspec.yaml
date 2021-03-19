@@ -61,6 +61,7 @@ flutter:
     - assets/comida.png
     - assets/cheque.png
     - assets/deliver.png
+    - assets/ptech.png
   
   #fonts:
    # - family: RobotoMono
