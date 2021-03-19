@@ -1,21 +1,37 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Models/ProductoModel.dart';
-import 'package:flutter_application_1/Screens/Producto/productolist.dart';
+import 'package:flutter_application_1/Provider/CatalogoProvider.dart';
+import 'package:flutter_application_1/Screens/Carrito/Carro.dart';
 import 'package:flutter_application_1/Services/ProductoService.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class Producto extends StatelessWidget {
+class Producto extends StatefulWidget {
   
   static const String routeName = '/Producto';
   final int todo;
   const Producto({Key key,@required this.todo}) : super(key: key);
 
   @override
+  _ProductoState createState() => _ProductoState();
+}
+
+class _ProductoState extends State<Producto> {
+  //List<ItemCar> items = [];
+  List<ProductoModel> items = [];
+  int contador = 0;
+
+@override
+  void initState() {
+    super.initState();
+    fetchListaProductoXTienda(widget.todo);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final _catalogProvider = Provider.of<CatalogoProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
@@ -28,16 +44,32 @@ class Producto extends StatelessWidget {
         ),
         elevation: 0.0,
         actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 20.0),
-            child: IconButton(
-              color: Colors.black,
-              icon: const Icon(Icons.shopping_basket),
-              tooltip: 'Productos seleccionados',
-              onPressed: () {
-              },
+          IconButton(
+            icon: Stack(
+              overflow: Overflow.visible,
+              children: [
+                Icon(Icons.shopping_basket, color: Colors.black,),
+                Positioned(
+                  right: -10,
+                  top: -10,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.amber,
+                    child: Text(
+                      '${context.watch<CatalogoProvider>().catalogo.length}',
+                      //'$contador',
+                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14.0,
+                    ),
+                  ),
+                  radius: 10.0,
+                ),
+                ),
+              ],
             ),
-          )
+            onPressed: (){
+              Navigator.push( context, MaterialPageRoute(builder: (context) => Carro()));
+            }
+          ),
+          
         ],
         leading: IconButton(icon: Icon(Icons.navigate_before_sharp,color: Colors.black,),
                   onPressed: () {
@@ -48,9 +80,21 @@ class Producto extends StatelessWidget {
       body: Container(
         child: 
         FutureBuilder<List<dynamic>>(
-        future: fetchListaProductoXTienda(todo),
+        future: fetchListaProductoXTienda(widget.todo),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            //print("sdmlskmlcmslkmdclksmdlcm");
+            snapshot.data.forEach(
+              (element) => items.add(
+                ProductoModel(
+                  id: element['iddProducto'],
+                  nombre: element['snombre'],
+                  precio: element['dprecio'],
+                  descripcion: element['sdescripcion'],
+                )
+              )
+            );
+            //print(snapshot.data);
             return ListView.builder(
               scrollDirection: Axis.vertical,
               itemCount: snapshot.data.length,
@@ -70,11 +114,39 @@ class Producto extends StatelessWidget {
                             backgroundImage: NetworkImage('https://picsum.photos/250?image=9')
                           ),
                           title: Text(snapshot.data[index]['snombre'], style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.bold, color: Colors.black),),
-                          subtitle: Text(snapshot.data[index]['sdescripcion'], style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.normal, color: Colors.black38),),
-                          trailing: IconButton(icon: Icon(Icons.navigate_next,color: Colors.black,),
+                          subtitle: Text('${snapshot.data[index]['sdescripcion']}\n S/. ${snapshot.data[index]['dprecio']}', style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.normal, color: Colors.black38),),
+                          trailing: IconButton(
+                            icon: items[index].addCar
+                              ? Icon(Icons.remove_circle, color: Colors.red,
+                            )
+                            : Icon(Icons.add_circle, color: Colors.green,
+                            ),
+                            onPressed: (){
+                               if (items[index].addCar){
+                                 print(items[index].precio);
+//                                 context.context.watch<CatalogoProvider().catalogo.>()
+                                 _catalogProvider.removeFromCatalogo(items[index]);
+                                } else {
+                                  _catalogProvider.addToCatalogo(items[index]);
+                                }
+                                setState(() {
+                                  items[index].toggleAdded();
+                                });
+                              /*setState(() {
+                                items[index].toggleAdded();
+                                if(items[index].addCar == false){
+                                  contador = contador-1;
+                                }else{
+                                  contador = contador+1;
+                                }
+                              });*/
+                            }
+                          )
+                          
+                          /*IconButton(icon: Icon(Icons.add_circle,color: Colors.greenAccent,),
                           onPressed: () {
                           }
-                            ),
+                            ),*/
                         ),
                       ]
                     ),
@@ -83,6 +155,7 @@ class Producto extends StatelessWidget {
               },
             );
           }
+
           else if (snapshot.hasError) {
             print("${snapshot.error}");
             return Text("${snapshot.error}");

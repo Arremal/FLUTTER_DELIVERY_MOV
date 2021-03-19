@@ -29,7 +29,7 @@ dependencies:
   geocoding: ^1.0.5
   google_fonts: ^1.1.2
   http: ^0.12.0+1
-  provider: ^4.3.3
+  provider: ^4.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -59,6 +59,8 @@ flutter:
     - assets/perfil.png
     - assets/man.png
     - assets/comida.png
+    - assets/cheque.png
+    - assets/deliver.png
   
   #fonts:
    # - family: RobotoMono

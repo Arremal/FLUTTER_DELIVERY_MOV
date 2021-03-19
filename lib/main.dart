@@ -5,6 +5,8 @@ import 'package:flutter_application_1/Screens/Carrito/Carro.dart';
 import 'package:flutter_application_1/Screens/Home/body.dart';
 import 'package:flutter_application_1/Screens/Home/inicio.dart';
 import 'package:flutter_application_1/Screens/Producto/Producto.dart';
+import 'package:provider/provider.dart';
+import 'Provider/CatalogoProvider.dart';
 import 'Screens/Navigations/NavDrawer.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -12,13 +14,20 @@ import 'Screens/Ubicacion/ubicacion.dart';
 
 
 void main() => runApp(
-  MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: BottomNavBar(),
-    routes: <String, WidgetBuilder> {
-      '/a': (BuildContext context) => Producto(),
-    },
-  ));
+  MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => CatalogoProvider()),
+    ],
+    child: MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: BottomNavBar(),
+      routes: <String, WidgetBuilder> {
+        //'/a': (BuildContext context) => Producto(),
+      },
+    ),
+
+  )
+);
 
 class BottomNavBar extends StatefulWidget {
   @override
@@ -101,21 +110,43 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ),
         ),*/
         elevation: 0.0,
-        leading: Icon(
+        leading: IconButton(
+          icon: Icon(
+            Icons.supervised_user_circle_sharp,
+            color: Colors.black,
+        ), 
+        onPressed: null),
+        /*leading: Icon(
           Icons.supervised_user_circle_sharp,
           color: Colors.black,
-        ),
+        ),*/
         actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 20.0),
-            child: IconButton(
-              color: Colors.black,
-              icon: const Icon(Icons.add_alert),
-              tooltip: 'Show Snackbar',
-              onPressed: () {
-              },
+          IconButton(
+            icon: Stack(
+              overflow: Overflow.visible,
+              children: [
+                Icon(Icons.shopping_basket, color: Colors.black,),
+                Positioned(
+                  right: -10,
+                  top: -10,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.amber,
+                    child: Text(
+                      '${context.watch<CatalogoProvider>().catalogo.length}',
+                      //'$contador',
+                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14.0,
+                    ),
+                  ),
+                  radius: 10.0,
+                ),
+                ),
+              ],
             ),
-          )
+            onPressed: (){
+              Navigator.push( context, MaterialPageRoute(builder: (context) => Carro()));
+            }
+          ),
+          
         ],
       ),
         

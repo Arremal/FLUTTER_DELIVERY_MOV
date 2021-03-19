@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Provider/CatalogoProvider.dart';
+import 'package:flutter_application_1/Screens/Checkout/Checkout.dart';
 import 'package:flutter_application_1/Screens/Home/TexiInformacion.dart';
+import 'package:provider/provider.dart';
 
 class Carro extends StatefulWidget {
   Carro({Key key}) : super(key: key);
@@ -11,10 +14,42 @@ class Carro extends StatefulWidget {
 class _CarroState extends State<Carro> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-       children: <Widget>[
-        Listacarrito()
-      ],
+    final _catalogoProvider = Provider.of<CatalogoProvider>(context);
+
+    return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        centerTitle: true,
+        backgroundColor: Color(0xFFFAFAFA),
+        title: Text("Mi carrito",
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        elevation: 0.0,
+        leading: IconButton(icon: Icon(Icons.navigate_before_sharp,color: Colors.black,),
+          onPressed: () {
+            Navigator.pop(context);
+           }
+        ),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: _catalogoProvider.catalogo.length,
+              itemBuilder: (context, index) => ListTile(
+                title: Text(
+                  '${_catalogoProvider.catalogo[index].nombre}'.toUpperCase(),
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                )
+              )),
+          ),
+          Totalfinal()
+          
+        ],
+      )
+      //Listacarrito()
     );
   }
 }
@@ -49,7 +84,7 @@ class Listacarrito extends StatelessWidget {
 
           ),
         ),
-        totalfinal()
+        Totalfinal()
       ],
     );
   }
@@ -145,117 +180,88 @@ class contin extends StatelessWidget {
   }
 }
 
-class totalfinal extends StatelessWidget {
+class Totalfinal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height*0.28,
+      height: MediaQuery.of(context).size.height*0.20,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(35.0),topRight: Radius.circular(35.0))
       ),
-      child: Column(
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(left: 20.0, top: 10.0, right: 20.0),
-                child: Text("Sub Total",
-                style: TextStyle(
-                  fontSize: 15.0
-                ),)
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20.0, right: 20.0, top:10),
+        child: Column(
+          children: [
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: Text('Tu orden', style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0
+                    ), textAlign: TextAlign.center),
+                ),
+                Expanded(
+                  child: Text('S/.20', style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0
+                    ), textAlign: TextAlign.center),
+                ),
+    
+              ],
+              
               ),
-              SizedBox(width: MediaQuery.of(context).size.width*0.45,),
-              Padding(
-                  padding: EdgeInsets.only(left: 20.0, top: 10.0, right: 20.0),
-                  child: Text("30",
-                    style: TextStyle(
-                        fontSize: 15.0
-                    ),)
-              ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Padding(
-                  padding: EdgeInsets.only(left: 20.0, top: 10.0, right: 20.0),
-                  child: Text("Cupón ",
-                    style: TextStyle(
-                        fontSize: 15.0
-                    ),)
-              ),
-              SizedBox(width: MediaQuery.of(context).size.width*0.45,),
-              Padding(
-                  padding: EdgeInsets.only(left: 20.0, top: 10.0, right: 20.0),
-                  child: Text("    30",
-                    style: TextStyle(
-                        fontSize: 15.0
-                    ),)
-              ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Padding(
-                  padding: EdgeInsets.only(left: 20.0, top: 10.0, right: 20.0),
-                  child: Text("Delivery ",
-                    style: TextStyle(
-                        fontSize: 15.0
-                    ),)
-              ),
-              SizedBox(width: MediaQuery.of(context).size.width*0.45,),
-              Padding(
-                  padding: EdgeInsets.only(left: 20.0, top: 10.0, right: 20.0),
-                  child: Text("  30",
-                    style: TextStyle(
-                        fontSize: 15.0
-                    ),)
-              ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Padding(
-                  padding: EdgeInsets.only(left: 20.0, top: 10.0, right: 20.0),
-                  child: Text("Total ",
-                    style: TextStyle(
-                        fontSize: 15.0
-                    ),)
-              ),
-              SizedBox(width: MediaQuery.of(context).size.width*0.45,),
-              Padding(
-                  padding: EdgeInsets.only(left: 20.0, top: 10.0, right: 20.0),
-                  child: Text("       30",
-                    textAlign: TextAlign.right,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        fontSize: 15.0
-                    ),)
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+            Padding(
+            padding: const EdgeInsets.all(20.0),
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height*0.08,
-              decoration: BoxDecoration(
-                  color: Color(0xFFFF6B01),
-                  borderRadius: BorderRadius.all(Radius.circular(35.0))
-              ),
-              child: Center(
-                child: Text('Continuar',
-                style: TextStyle(
-                  color: Colors.white,
+                child: RaisedButton(
+                  textColor: Colors.white,
+                  color: Colors.black,
+                  child: Text("Checkout",
+                  style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20.0
                 ),),
-              ),
+                  onPressed: () {
+                    Navigator.push( context, MaterialPageRoute(builder: (context) => Checkout()));
+                  },
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(30.0),
+                ),
+  ),
+
             ),
           )
-        ],
-      ),
+          ],
+        ),
+      )
     );
   }
+}
+
+Widget boton(){
+  return Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: Container(
+            //  width: MediaQuery.of(context).size.width,
+            //  height: MediaQuery.of(context).size.height*0.08,
+                child: RaisedButton(
+                  textColor: Colors.white,
+                  color: Colors.black,
+                  child: Text("Continuar",
+                  style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0
+                ),),
+                  onPressed: () {},
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(30.0),
+                ),
+  ),
+
+            ),
+          );
 }
