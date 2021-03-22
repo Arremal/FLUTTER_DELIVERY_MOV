@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Provider/CatalogoProvider.dart';
 import 'package:flutter_application_1/Screens/Checkout/Checkout.dart';
 import 'package:flutter_application_1/Screens/Home/TexiInformacion.dart';
+import 'package:flutter_application_1/Utils/formatPrice.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class Carro extends StatefulWidget {
@@ -12,6 +14,8 @@ class Carro extends StatefulWidget {
 }
 
 class _CarroState extends State<Carro> {
+  var precioTotal;
+
   @override
   Widget build(BuildContext context) {
     final _catalogoProvider = Provider.of<CatalogoProvider>(context);
@@ -39,22 +43,101 @@ class _CarroState extends State<Carro> {
             child: ListView.builder(
               itemCount: _catalogoProvider.catalogo.length,
               itemBuilder: (context, index) => ListTile(
+                leading: CircleAvatar(
+                            radius: 30,
+                            backgroundImage: NetworkImage('https://picsum.photos/250?image=9')
+                          ),
                 title: Text(
-                  '${_catalogoProvider.catalogo[index].nombre}'.toUpperCase(),
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                )
+                  '${_catalogoProvider.catalogo[index].snombre}',
+                  style: GoogleFonts.rubik(
+                    fontSize: 17, ),
+                ),
+                subtitle: Row(
+                  children: [
+                    IconButton(icon: Icon(
+                      Icons.add_circle,color: Color(0xFFFF6B01),),
+                      onPressed: (){
+
+                      }
+                    ),
+                    Text('5'),
+                    IconButton(
+                      icon: Icon(Icons.do_not_disturb_on,color: Color(0xFFFF6B01),), 
+                      onPressed: (){
+                      }
+                    )
+                  ],
+                ),
+                trailing: Text('S/.${_catalogoProvider.catalogo[index].dprecio}', style: TextStyle(color: Colors.black, fontSize: 17.0),)
+              
               )),
           ),
-          Totalfinal()
-          
+          //Totalfinal(),
+          //total final
+          Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height*0.20,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(35.0),topRight: Radius.circular(35.0))
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20.0, right: 20.0, top:10),
+        child: Column(
+          children: [
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: Text('Tu orden', style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0
+                    ), textAlign: TextAlign.center),
+                ),
+                Expanded(
+                  child: Text('S/.${formatTotal(_catalogoProvider.catalogo)}', style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0
+                    ), textAlign: TextAlign.center),
+                ),
+    
+              ],
+              
+              ),
+            Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height*0.08,
+                child: RaisedButton(
+                  textColor: Colors.white,
+                  color: Colors.black,
+                  child: Text("Checkout",
+                  style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0
+                ),),
+                  onPressed: () {
+                    Navigator.push( context, MaterialPageRoute(builder: (context) => Checkout()));
+                  },
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(30.0),
+                ),
+  ),
+
+            ),
+          )
+          ],
+        ),
+      )
+    )
+
         ],
       )
-      //Listacarrito()
     );
   }
 }
 
-
+/*
 
 class Listacarrito extends StatelessWidget {
   @override
@@ -88,9 +171,9 @@ class Listacarrito extends StatelessWidget {
       ],
     );
   }
-}
+}*/
 
-
+/*
 
 class contin extends StatelessWidget {
   @override
@@ -179,8 +262,8 @@ class contin extends StatelessWidget {
     );
   }
 }
-
-class Totalfinal extends StatelessWidget {
+*/
+/*class Totalfinal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -203,7 +286,7 @@ class Totalfinal extends StatelessWidget {
                     ), textAlign: TextAlign.center),
                 ),
                 Expanded(
-                  child: Text('S/.20', style: TextStyle(
+                  child: Text('${_catalogoProvider.catalogo[index].snombre}', style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20.0
                     ), textAlign: TextAlign.center),
@@ -241,7 +324,7 @@ class Totalfinal extends StatelessWidget {
     );
   }
 }
-
+*/
 Widget boton(){
   return Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20.0),

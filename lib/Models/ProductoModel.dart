@@ -1,32 +1,32 @@
 import 'package:meta/meta.dart';
 
 class ProductoModel{
-  int id, estado;
-  double precio;
-  String nombre, descripcion;
-  bool addCar;
+  /*final*/ int iidProducto;
+  /*final*/ double dprecio;
+  /*final*/ String snombre, sdescripcion;
+  bool addCar = false;
 
+  ProductoModel(this.iidProducto, this.dprecio, this.snombre, this.sdescripcion, this.addCar);
 
-   ProductoModel({
-    @required id,
-    @required nombre,
-    @required descripcion,
-    @required precio,
+  /* ProductoModel({
+    @required int iidProducto,
+    @required double dprecio,
+    @required String snombre,
+    @required String sdescripcion,
     this.addCar = false,
-    estado
-  });
+    //estado
+  });*/
 
  void toggleAdded(){
     addCar =! addCar;
   }
 
-   factory ProductoModel.fromJson(Map <String , dynamic> productoJson) => new ProductoModel(
-    id      : productoJson['iidProducto'],
-    precio  : productoJson['dprecio'],
-    nombre   : productoJson['snombre'],
-    descripcion     : productoJson['sdescripcion'],
-    estado        : productoJson['iestado'],
+  /* factory ProductoModel.fromJson(Map <String , dynamic> productoJson) => new ProductoModel(
+    iidProducto      : productoJson['iidProducto'],
+    dprecio  : productoJson['dprecio'],
+    snombre   : productoJson['snombre'],
+    sdescripcion     : productoJson['sdescripcion'],
+    //estado        : productoJson['iestado'],
   //  empresa        : productoJson['empresa']
-  );
-
+  );*/
 }

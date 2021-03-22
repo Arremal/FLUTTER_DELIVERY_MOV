@@ -21,6 +21,7 @@ class Producto extends StatefulWidget {
 class _ProductoState extends State<Producto> {
   //List<ItemCar> items = [];
   List<ProductoModel> items = [];
+  List<ProductoModel> u = [];
   int contador = 0;
 
 @override
@@ -83,18 +84,29 @@ class _ProductoState extends State<Producto> {
         future: fetchListaProductoXTienda(widget.todo),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            //print("sdmlskmlcmslkmdclksmdlcm");
-            snapshot.data.forEach(
+            print("sdmlskmlcmslkmdclksmdlcm");
+          /*  snapshot.data.forEach(
               (element) => items.add(
                 ProductoModel(
-                  id: element['iddProducto'],
-                  nombre: element['snombre'],
-                  precio: element['dprecio'],
-                  descripcion: element['sdescripcion'],
+                  element['iidProducto'],
+                  element['dprecio'],
+                  element['snombre'],
+                 element['sdescripcion'],
+                 false
                 )
               )
             );
-            //print(snapshot.data);
+*/
+            for(var e in snapshot.data){
+              print(e['iidProducto']);
+              u.add(ProductoModel(
+              e['iidProducto'],e['dprecio'],e['snombre'],e['sdescripcion'],false
+            ));
+  
+}
+
+            print(u.length);
+            print(u.length);
             return ListView.builder(
               scrollDirection: Axis.vertical,
               itemCount: snapshot.data.length,
@@ -113,24 +125,27 @@ class _ProductoState extends State<Producto> {
                             radius: 30,
                             backgroundImage: NetworkImage('https://picsum.photos/250?image=9')
                           ),
-                          title: Text(snapshot.data[index]['snombre'], style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.bold, color: Colors.black),),
-                          subtitle: Text('${snapshot.data[index]['sdescripcion']}\n S/. ${snapshot.data[index]['dprecio']}', style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.normal, color: Colors.black38),),
+                          title: Text(u[index].snombre, style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.bold, color: Colors.black),),
+                          subtitle: Text('${u[index].sdescripcion}\n S/. ${u[index].dprecio}', style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.normal, color: Colors.black38),),
                           trailing: IconButton(
-                            icon: items[index].addCar
+                            icon: u[index].addCar
                               ? Icon(Icons.remove_circle, color: Colors.red,
                             )
                             : Icon(Icons.add_circle, color: Colors.green,
                             ),
                             onPressed: (){
-                               if (items[index].addCar){
-                                 print(items[index].precio);
+                               if (u[index].addCar){
+                                 print(u[index].dprecio);
+                                 print("nullp");
 //                                 context.context.watch<CatalogoProvider().catalogo.>()
-                                 _catalogProvider.removeFromCatalogo(items[index]);
+                                 _catalogProvider.removeFromCatalogo(u[index]);
                                 } else {
-                                  _catalogProvider.addToCatalogo(items[index]);
+                                  print("null");
+                                  print(u[index].dprecio);
+                                  _catalogProvider.addToCatalogo(u[index]);
                                 }
                                 setState(() {
-                                  items[index].toggleAdded();
+                                  u[index].toggleAdded();
                                 });
                               /*setState(() {
                                 items[index].toggleAdded();
