@@ -14,22 +14,18 @@ import 'Screens/SplashScreen/SplashSreen.dart';
 import 'Screens/Ubicacion/ubicacion.dart';
 import 'Screens/Usuario/Usuario.dart';
 
-
-void main() => runApp(
-  MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (_) => CatalogoProvider()),
-    ],
-    child: MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Splash(),
-      routes: <String, WidgetBuilder> {
-        //'/a': (BuildContext context) => Producto(),
-      },
-    ),
-
-  )
-);
+void main() => runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CatalogoProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: BottomNavBar(),
+        routes: <String, WidgetBuilder>{
+          //'/a': (BuildContext context) => Producto(),
+        },
+      ),
+    ));
 
 class BottomNavBar extends StatefulWidget {
   @override
@@ -37,7 +33,6 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  
   int pageIndex = 0;
 
   final Carro _listacarro = Carro();
@@ -45,30 +40,28 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final NavDrawer _navDrawer = NavDrawer();
   final Ubicacion _ubicacion = Ubicacion();
 
-  var keygeneral ;
-  
+  var keygeneral;
+
   Widget _showPage = new Body();
 
-  Widget _pageChooser(int page){
-    switch(page){
+  Widget _pageChooser(int page) {
+    switch (page) {
       case 0:
-      return _body;
-      break;
+        return _body;
+        break;
       case 1:
-      return _listacarro;
-      break;
+        return _listacarro;
+        break;
       case 2:
-      return _ubicacion;
-      break;
+        return _ubicacion;
+        break;
       case 3:
-      return _navDrawer;
-      break;
-      default: 
+        return _navDrawer;
+        break;
+      default:
         return new Container(
           child: Center(
-            child: new Text(
-              "No se encontro nada"
-            ),
+            child: new Text("No se encontro nada"),
           ),
         );
     }
@@ -79,31 +72,42 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: CurvedNavigationBar(
-          key: _bottomNavigationKey,
-          index: pageIndex,
-          height: 50.0,
-          items: <Widget>[
-            Icon(Icons.home, size: 30, color: Colors.white,),
-            Icon(Icons.shopping_basket, size: 30, color: Colors.white),
-            Icon(Icons.add_location, size: 30, color: Colors.white,),
-            Icon(Icons.clear_all, size: 30, color: Colors.white,),
-          ],
-          color: Color(0xFFFF6B01),
-          backgroundColor: Colors.white,
-          //animationCurve: Curves.easeInOut,
+      bottomNavigationBar: CurvedNavigationBar(
+        key: _bottomNavigationKey,
+        index: pageIndex,
+        height: 50.0,
+        items: <Widget>[
+          Icon(
+            Icons.home,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(Icons.shopping_basket, size: 30, color: Colors.white),
+          Icon(
+            Icons.add_location,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.clear_all,
+            size: 30,
+            color: Colors.white,
+          ),
+        ],
+        color: Color(0xFFFF6B01),
+        backgroundColor: Colors.white,
+        //animationCurve: Curves.easeInOut,
 
-          animationDuration: Duration(milliseconds: 600),
-          onTap: (int tappedIndex) {
-            setState(() {
-              _showPage = BounceInRight(child: _pageChooser(tappedIndex)); 
-            });
-          },
-        ),
-        body: _showPage,
+        animationDuration: Duration(milliseconds: 600),
+        onTap: (int tappedIndex) {
+          setState(() {
+            _showPage = BounceInRight(child: _pageChooser(tappedIndex));
+          });
+        },
+      ),
+      body: _showPage,
 /////////////////////////////////////////////////////////////////////
-        
-        );
+    );
   }
 }
 
@@ -152,7 +156,6 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }*/
-
 
 ////
 /*
