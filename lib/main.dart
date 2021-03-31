@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Provider/DetalleCarroProvider.dart';
 import 'package:flutter_application_1/Routes/Routes.dart';
 import 'package:flutter_application_1/Screens/Carrito/Carro.dart';
 import 'package:flutter_application_1/Screens/Home/body.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_application_1/Screens/Home/inicio.dart';
 import 'package:flutter_application_1/Screens/Producto/Producto.dart';
 import 'package:provider/provider.dart';
 import 'Provider/CatalogoProvider.dart';
+import 'Screens/Login/login.dart';
 import 'Screens/Navigations/NavDrawer.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -19,10 +21,11 @@ void main() => runApp(
   MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => CatalogoProvider()),
+      ChangeNotifierProvider(create: (_) => DetalleCarroProvider()),
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Splash(),
+      home: Splash(),//Login(),
       routes: <String, WidgetBuilder> {
         //'/a': (BuildContext context) => Producto(),
       },
@@ -87,7 +90,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             Icon(Icons.home, size: 30, color: Colors.white,),
             Icon(Icons.shopping_basket, size: 30, color: Colors.white),
             Icon(Icons.add_location, size: 30, color: Colors.white,),
-            Icon(Icons.clear_all, size: 30, color: Colors.white,),
+            Icon(Icons.supervised_user_circle_sharp, size: 30, color: Colors.white,),
           ],
           color: Color(0xFFFF6B01),
           backgroundColor: Colors.white,

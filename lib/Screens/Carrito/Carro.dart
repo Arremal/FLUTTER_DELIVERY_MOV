@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Provider/CatalogoProvider.dart';
+import 'package:flutter_application_1/Provider/DetalleCarroProvider.dart';
 import 'package:flutter_application_1/Screens/Checkout/Checkout.dart';
-import 'package:flutter_application_1/Screens/Home/TexiInformacion.dart';
 import 'package:flutter_application_1/Utils/formatPrice.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,11 +14,11 @@ class Carro extends StatefulWidget {
 }
 
 class _CarroState extends State<Carro> {
-  var precioTotal;
 
   @override
   Widget build(BuildContext context) {
-    final _catalogoProvider = Provider.of<CatalogoProvider>(context);
+    //final _catalogoProvider = Provider.of<CatalogoProvider>(context);
+    final _detalleCarroProvider = Provider.of<DetalleCarroProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -41,14 +41,15 @@ class _CarroState extends State<Carro> {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: _catalogoProvider.catalogo.length,
+              itemCount: _detalleCarroProvider.detallecarro.length,
               itemBuilder: (context, index) => ListTile(
-                leading: CircleAvatar(
+                leading: //Image.file(file: File('')),
+                CircleAvatar(
                             radius: 30,
-                            backgroundImage: NetworkImage('https://picsum.photos/250?image=9')
-                          ),
+                            backgroundImage: NetworkImage('https://picsum.photos/250?image=9'),
+                ),
                 title: Text(
-                  '${_catalogoProvider.catalogo[index].snombre}',
+                  '${_detalleCarroProvider.detallecarro[index].producto.snombre}',
                   style: GoogleFonts.rubik(
                     fontSize: 17, ),
                 ),
@@ -57,23 +58,23 @@ class _CarroState extends State<Carro> {
                     IconButton(icon: Icon(
                       Icons.add_circle,color: Color(0xFFFF6B01),),
                       onPressed: (){
-
+                        _detalleCarroProvider.addCarrito(_detalleCarroProvider.detallecarro[index]);
                       }
                     ),
-                    Text('5'),
+                    
+                    Text('${_detalleCarroProvider.detallecarro[index].icantidad}'),
                     IconButton(
                       icon: Icon(Icons.do_not_disturb_on,color: Color(0xFFFF6B01),), 
                       onPressed: (){
+                          _detalleCarroProvider.updateCantida(_detalleCarroProvider.detallecarro[index]);
                       }
                     )
                   ],
                 ),
-                trailing: Text('S/.${_catalogoProvider.catalogo[index].dprecio}', style: TextStyle(color: Colors.black, fontSize: 17.0),)
+                trailing: Text('S/.${totalProd(_detalleCarroProvider.detallecarro[index])}', style: TextStyle(color: Colors.black, fontSize: 17.0),)
               
               )),
           ),
-          //Totalfinal(),
-          //total final
           Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height*0.20,
@@ -94,7 +95,7 @@ class _CarroState extends State<Carro> {
                     ), textAlign: TextAlign.center),
                 ),
                 Expanded(
-                  child: Text('S/.${formatTotal(_catalogoProvider.catalogo)}', style: TextStyle(
+                  child: Text('S/.${formatTotal(_detalleCarroProvider.detallecarro)}', style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20.0
                     ), textAlign: TextAlign.center),

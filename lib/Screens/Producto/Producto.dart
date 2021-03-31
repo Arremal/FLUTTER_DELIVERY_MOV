@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Models/DetalleCarroCompra.dart';
 import 'package:flutter_application_1/Models/ProductoModel.dart';
 import 'package:flutter_application_1/Provider/CatalogoProvider.dart';
+import 'package:flutter_application_1/Provider/DetalleCarroProvider.dart';
 import 'package:flutter_application_1/Screens/Carrito/Carro.dart';
 import 'package:flutter_application_1/Services/ProductoService.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Producto extends StatefulWidget {
-  
+
   static const String routeName = '/Producto';
   final int todo;
   const Producto({Key key,@required this.todo}) : super(key: key);
@@ -19,7 +19,7 @@ class Producto extends StatefulWidget {
 }
 
 class _ProductoState extends State<Producto> {
-  //List<ItemCar> items = [];
+  
   List<ProductoModel> items = [];
   List<ProductoModel> u = [];
   int contador = 0;
@@ -32,7 +32,10 @@ class _ProductoState extends State<Producto> {
 
   @override
   Widget build(BuildContext context) {
+
     final _catalogProvider = Provider.of<CatalogoProvider>(context, listen: false);
+    final _carritoProvider = Provider.of<DetalleCarroProvider>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
@@ -56,8 +59,7 @@ class _ProductoState extends State<Producto> {
                   child: CircleAvatar(
                     backgroundColor: Colors.amber,
                     child: Text(
-                      '${context.watch<CatalogoProvider>().catalogo.length}',
-                      //'$contador',
+                      '${context.watch<DetalleCarroProvider>().detallecarro.length}',
                       style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14.0,
                     ),
                   ),
@@ -84,50 +86,63 @@ class _ProductoState extends State<Producto> {
         future: fetchListaProductoXTienda(widget.todo),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            print("sdmlskmlcmslkmdclksmdlcm");
-          /*  snapshot.data.forEach(
-              (element) => items.add(
-                ProductoModel(
-                  element['iidProducto'],
-                  element['dprecio'],
-                  element['snombre'],
-                 element['sdescripcion'],
-                 false
-                )
-              )
-            );
-*/
             for(var e in snapshot.data){
-              print(e['iidProducto']);
               u.add(ProductoModel(
-              e['iidProducto'],e['dprecio'],e['snombre'],e['sdescripcion'],false
+              e['iidProducto'],e['dprecio'],e['snombre'],e['sdescripcion'], false
             ));
-  
-}
+            }
+            print("primero");
+            print("primero ${u.length}");
+            _catalogProvider.todoProducto(u);
 
-            print(u.length);
-            print(u.length);
-            return ListView.builder(
+          
+
+
+
+
+
+
+            return GridView.builder(
+              physics: ScrollPhysics(),
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: (1.5 / 2),
+                ),
               scrollDirection: Axis.vertical,
               itemCount: snapshot.data.length,
               itemBuilder: (context, index){
                 return Padding(
                   padding: const EdgeInsets.only(right: 8.0,left: 8.0,top: 2.0),
                   child: Card(
-                    elevation: 0.0,
+                    elevation: 1.0,
+                    shadowColor: Colors.black45,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: Column( 
                       children: [
-                        ListTile(
-                          leading: CircleAvatar(
-                            radius: 30,
-                            backgroundImage: NetworkImage('https://picsum.photos/250?image=9')
+                        Padding(
+                          padding: const EdgeInsets.only(top:8.0, bottom: 8.0),
+                          child: Image(
+                                height: 100.0,
+                                image: 
+                                
+                                NetworkImage('https://picsum.photos/250?image=9')
+                            ),
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.only(left:8.0, right: 8.0),
+                          child: Column(
+                            children: [
+                              Text(u[index].snombre, style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.bold, color: Colors.black)),
+                              Text('${u[index].sdescripcion}\n S/. ${u[index].dprecio}', style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.normal, color: Colors.black38),),
+                            ]
+                           
                           ),
-                          title: Text(u[index].snombre, style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.bold, color: Colors.black),),
-                          subtitle: Text('${u[index].sdescripcion}\n S/. ${u[index].dprecio}', style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.normal, color: Colors.black38),),
-                          trailing: IconButton(
+                        ),
+                        IconButton(
                             icon: u[index].addCar
                               ? Icon(Icons.remove_circle, color: Colors.red,
                             )
@@ -135,34 +150,19 @@ class _ProductoState extends State<Producto> {
                             ),
                             onPressed: (){
                                if (u[index].addCar){
-                                 print(u[index].dprecio);
-                                 print("nullp");
-//                                 context.context.watch<CatalogoProvider().catalogo.>()
-                                 _catalogProvider.removeFromCatalogo(u[index]);
+                                 //_catalogProvider.removeFromCatalogo(u[index]);
+                                 //_carritoProvider.removeFromCatalogo(1,1,1,u[index]);
                                 } else {
-                                  print("null");
-                                  print(u[index].dprecio);
-                                  _catalogProvider.addToCatalogo(u[index]);
+                                _catalogProvider.addToCatalogo(u[index]);
+                                DetalleCarroCompra det = DetalleCarroCompra(1,1,1,u[index]);
+                                _carritoProvider.addCarrito(det);
                                 }
                                 setState(() {
                                   u[index].toggleAdded();
                                 });
-                              /*setState(() {
-                                items[index].toggleAdded();
-                                if(items[index].addCar == false){
-                                  contador = contador-1;
-                                }else{
-                                  contador = contador+1;
-                                }
-                              });*/
                             }
-                          )
-                          
-                          /*IconButton(icon: Icon(Icons.add_circle,color: Colors.greenAccent,),
-                          onPressed: () {
-                          }
-                            ),*/
-                        ),
+                          )  
+                        
                       ]
                     ),
                   ),
@@ -377,3 +377,48 @@ class _MapViewState extends State<MapView> {
     );
   }
 }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+////
+///
+/*ListTile(
+                          leading: CircleAvatar(
+                            radius: 30,
+                            backgroundImage: NetworkImage('https://picsum.photos/250?image=9')
+                          ),
+                          title: Text(u[index].snombre, style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.bold, color: Colors.black),),
+                          subtitle: Text('${u[index].sdescripcion}\n S/. ${u[index].dprecio}\n${u[index].addCar}', style: GoogleFonts.roboto(fontSize: 15.0, fontWeight: FontWeight.normal, color: Colors.black38),),
+                          trailing: IconButton(
+                            icon: u[index].addCar
+                              ? Icon(Icons.remove_circle, color: Colors.red,
+                            )
+                            : Icon(Icons.add_circle, color: Colors.green,
+                            ),
+                            onPressed: (){
+                               if (u[index].addCar){
+                                 _catalogProvider.removeFromCatalogo(u[index]);
+                                } else {
+                                _catalogProvider.addToCatalogo(u[index]);
+                                }
+                                setState(() {
+                                  u[index].toggleAdded();
+                                });
+                            }
+                          )
+                          
+                          /*IconButton(icon: Icon(Icons.add_circle,color: Colors.greenAccent,),
+                          onPressed: () {
+                          }
+                            ),*/
+                        ),*/

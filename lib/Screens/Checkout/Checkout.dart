@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Provider/DetalleCarroProvider.dart';
 import 'package:flutter_application_1/Screens/Checkout/custom_dialog_box.dart';
+import 'package:flutter_application_1/Utils/formatPrice.dart';
+import 'package:provider/provider.dart';
 
 class Checkout extends StatefulWidget {
   Checkout({Key key}) : super(key: key);
@@ -11,6 +14,8 @@ class Checkout extends StatefulWidget {
 class _CheckoutState extends State<Checkout> {
   @override
   Widget build(BuildContext context) {
+        final _detalleCarroProvider = Provider.of<DetalleCarroProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
@@ -44,21 +49,45 @@ class _CheckoutState extends State<Checkout> {
                       fontSize: 15.0
                     ),
                   ),
-                  Container(
-                    height: 50.0,
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.only(top: 10.0, bottom: 15.0),
-                    padding: const EdgeInsets.all(7.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      border: Border.all(color: Colors.black54, width: 2.0)
-                                  //border: BoxBorder()
-                    ),
-                    child: Text("Mi dirección",
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 20.0
-                    ),),
+                  Row(
+                    children: [
+                      
+                      Container(
+                        height: 50.0,
+                        width: MediaQuery.of(context).size.width/1.5,
+                        margin: const EdgeInsets.only(top: 10.0, bottom: 15.0),
+                        padding: const EdgeInsets.all(7.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          border: Border.all(color: Colors.black54, width: 2.0)
+                                      //border: BoxBorder()
+                        ),
+                        child: Text("Mi dirección",
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 20.0
+                        ),),
+                      ),
+                      SizedBox(width: 5.0),
+                      Material(
+                        color: Colors.white,
+                        child: Center(
+                          child: Ink(
+                            decoration: const ShapeDecoration(
+                              color: Colors.orange,
+                              shape: CircleBorder(),
+                            ),
+                            child: IconButton(
+                              icon: const Icon(Icons.maps_ugc_outlined),
+                              color: Colors.white,
+                              onPressed: () {
+                                
+                              },
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                  Text("MÉTODO DE PAGO",
                   style: TextStyle(
@@ -79,7 +108,7 @@ class _CheckoutState extends State<Checkout> {
                     ),
                     child: Text("Contra Entrega",
                       style: TextStyle(
-                      color: Colors.black54,
+                      color: Colors.orange,
                       fontSize: 20.0
                     ),),
                   ),
@@ -96,7 +125,7 @@ class _CheckoutState extends State<Checkout> {
                         textAlign: TextAlign.center),
                       ),
                       Expanded(
-                        child: Text('S/.20', style: TextStyle(
+                        child: Text('S/.${formatTotal(_detalleCarroProvider.detallecarro)}', style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20.0
                         ), textAlign: TextAlign.center),
@@ -130,7 +159,7 @@ class _CheckoutState extends State<Checkout> {
                     ), textAlign: TextAlign.center),
                 ),
                 Expanded(
-                  child: Text('S/.30', style: TextStyle(
+                  child: Text('S/.${totalfinal(_detalleCarroProvider.detallecarro)}', style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20.0
                     ), textAlign: TextAlign.center),
@@ -156,21 +185,6 @@ class _CheckoutState extends State<Checkout> {
                         ),
                       ),
                     onPressed: () {
-                      //Navigator.push( context, MaterialPageRoute(builder: (context) => Checkout()));
-                      /*showDialog(context: context, child:
-                        new AlertDialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(2),
-                          ),
-                          title: Column(
-                            children: [
-                              Text("Gracias por tu orden"),
-                            ],
-                          ),
-                            content: new Text("Puedes rastrear tu pedido en el mapa"),
-                        )
-                      );*/
-
                       showDialog(context: context,
                         builder: (BuildContext context){
                           return CustomDialogBox(

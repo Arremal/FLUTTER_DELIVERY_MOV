@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:meta/meta.dart';
 
 class ProductoModel{
@@ -5,8 +7,12 @@ class ProductoModel{
   /*final*/ double dprecio;
   /*final*/ String snombre, sdescripcion;
   bool addCar = false;
+  int cantidad;
+  //var image;
 
   ProductoModel(this.iidProducto, this.dprecio, this.snombre, this.sdescripcion, this.addCar);
+  ProductoModel.carrito(this.iidProducto,this.addCar);
+
 
   /* ProductoModel({
     @required int iidProducto,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Provider/CatalogoProvider.dart';
+import 'package:flutter_application_1/Provider/DetalleCarroProvider.dart';
 import 'package:flutter_application_1/Screens/Carrito/Carro.dart';
 import 'package:flutter_application_1/Screens/Home/TiendaList.dart';
 import 'package:flutter_application_1/Screens/Home/cardListon.dart';
@@ -22,7 +23,10 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+      
+      final _catalogProvider = Provider.of<CatalogoProvider>(context, listen: false);
+  final _carritoProvider = Provider.of<DetalleCarroProvider>(context, listen: false);
+   return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
         centerTitle: true,
@@ -52,7 +56,7 @@ class _BodyState extends State<Body> {
                   child: CircleAvatar(
                     backgroundColor: Colors.amber,
                     child: Text(
-                      '${context.watch<CatalogoProvider>().catalogo.length}',
+                      '${context.watch<DetalleCarroProvider>().detallecarro.length}',
                       //'$contador',
                       style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14.0,
                     ),
@@ -70,22 +74,23 @@ class _BodyState extends State<Body> {
         ],
       ),
       body: ListView(
-              children: [
-                informacion("Hoy es especial", 25.0, FontWeight.bold),
-              informacion("Comida Fresca", 15.0, FontWeight.normal),
-              SizedBox(height: 10.0,),
-              Padding(
-                padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                child: horizontalList2,
-              ),
-              CardListon(),
-              informacion('Tiendas', 20.0, FontWeight.bold),
+        children: [
+          informacion("Hoy es especial", 25.0, FontWeight.bold),
+          informacion("Comida Fresca", 15.0, FontWeight.normal),
+          SizedBox(height: 10.0,),
+          Padding(
+            padding: EdgeInsets.only(left: 20.0, right: 20.0),
+              child: horizontalList2,
+            ),
+          CardListon(),
+          informacion('Tiendas', 20.0, FontWeight.bold),
               //HomeScreen(),
-              Container(
-                height: MediaQuery.of(context).size.height, // give it a fixed height constraint
-                child: Tiendita(),)
+          Container(
+            height: MediaQuery.of(context).size.height, // give it a fixed height constraint
+            child: Tiendita(),)
               //Tiendita()
-              ],),
+        ],
+      ),
     );
     /*Container(
       child: Padding(

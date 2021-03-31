@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/Producto/Producto.dart';
 import 'package:flutter_application_1/Services/LoginService.dart';
+import 'package:flutter_application_1/Services/ProductoService.dart';
 import 'package:flutter_application_1/Services/TiendaService.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_application_1/Provider/CatalogoProvider.dart';
+import 'package:provider/provider.dart';
 
   class Tiendita extends StatefulWidget {
     Tiendita({Key key}) : super(key: key);
@@ -23,6 +26,8 @@ import 'package:google_fonts/google_fonts.dart';
  
     @override
     Widget build(BuildContext context) {
+      final _catalogProvider = Provider.of<CatalogoProvider>(context, listen: false);
+
       return FutureBuilder<List<dynamic>>(
         future: fetchListaTiendas(),
         builder: (context, snapshot) {
@@ -50,6 +55,9 @@ import 'package:google_fonts/google_fonts.dart';
                           trailing: IconButton(icon: Icon(Icons.navigate_next,color: Colors.black,),
                           onPressed: () {
                             Navigator.push( context, MaterialPageRoute(builder: (context) => Producto(todo: snapshot.data[index]['iidTienda'],)));
+                            
+
+                            //_catalogProvider.addToCatalogo(productoModel);
                             //RouteSettings(arguments: ProductoModel())
                           }
                             )
