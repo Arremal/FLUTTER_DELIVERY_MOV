@@ -5,6 +5,7 @@ import 'package:flutter_application_1/Provider/CatalogoProvider.dart';
 import 'package:flutter_application_1/Provider/DetalleCarroProvider.dart';
 import 'package:flutter_application_1/Screens/Carrito/Carro.dart';
 import 'package:flutter_application_1/Services/ProductoService.dart';
+import 'package:flutter_application_1/Services/TiendaProductoService.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -28,6 +29,7 @@ class _ProductoState extends State<Producto> {
   void initState() {
     super.initState();
     fetchListaProductoXTienda(widget.todo);
+    fetchTiendaProducto();
   }
 
   @override
@@ -88,7 +90,7 @@ class _ProductoState extends State<Producto> {
           if (snapshot.hasData) {
             for(var e in snapshot.data){
               u.add(ProductoModel(
-              e['iidProducto'],e['dprecio'],e['snombre'],e['sdescripcion'], false
+              e['iidProducto'],e['dprecio'],e['snombre'],e['sdescripcion']
             ));
             }
             print("primero");
@@ -148,17 +150,25 @@ class _ProductoState extends State<Producto> {
                             )
                             : Icon(Icons.add_circle, color: Colors.green,
                             ),
+                            /*icon: _carritoProvider.detallecarro.contains(u[index])==true
+                              ? Icon(Icons.remove_circle, color: Colors.red,
+                            )
+                            : Icon(Icons.add_circle, color: Colors.green,
+                            ),*/
                             onPressed: (){
-                               if (u[index].addCar){
+                               if (_carritoProvider.detallecarro.contains(u[index])==true){
                                  //_catalogProvider.removeFromCatalogo(u[index]);
-                                 //_carritoProvider.removeFromCatalogo(1,1,1,u[index]);
+                                // _carritoProvider.removeFromCatalogo(1,1,1,u[index]);
                                 } else {
                                 _catalogProvider.addToCatalogo(u[index]);
-                                DetalleCarroCompra det = DetalleCarroCompra(1,1,1,u[index]);
+                                DetalleCarroCompra det = DetalleCarroCompra(1,1,u[index]);
                                 _carritoProvider.addCarrito(det);
+                                print('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu');
                                 }
                                 setState(() {
                                   u[index].toggleAdded();
+                                  //_carritoProvider.detallecarro.;
+                                  //_carritoProvider.detallecarro[index].addCar =! _carritoProvider.detallecarro.contains(u[index]);
                                 });
                             }
                           )  

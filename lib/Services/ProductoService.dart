@@ -27,7 +27,7 @@ Future<List<dynamic>> fetchListaProductoXTienda(int id) async{
 
     for(var e in data['aaData']){
       u.add(ProductoModel(
-      e['iidProducto'],e['dprecio'],e['snombre'],e['sdescripcion'],false
+      e['iidProducto'],e['dprecio'],e['snombre'],e['sdescripcion']
     ));
     //print(e['iidProducto']);
    // fetchImgProducto(e['iidProducto']);

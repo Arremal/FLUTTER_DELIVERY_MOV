@@ -10,7 +10,7 @@ class ProductoModel{
   int cantidad;
   //var image;
 
-  ProductoModel(this.iidProducto, this.dprecio, this.snombre, this.sdescripcion, this.addCar);
+  ProductoModel(this.iidProducto, this.dprecio, this.snombre, this.sdescripcion,{ this.addCar=false});
   ProductoModel.carrito(this.iidProducto,this.addCar);
 
 

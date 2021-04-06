@@ -8,10 +8,11 @@ class DetalleCarroProvider with ChangeNotifier{
   List<DetalleCarroCompra> get detallecarro => _detallecarro;
 
     void addCarrito(DetalleCarroCompra det){
-      DetalleCarroCompra deti = DetalleCarroCompra(det.iidDetalleCompra,det.icantidad+1,det.estado,det.producto);
+      DetalleCarroCompra deti = DetalleCarroCompra(det.icantidad+1,det.estado,det.producto);
       if(_detallecarro.contains(det)==true){
-        _detallecarro.remove(det);
-        _detallecarro.add(deti);
+        
+         _detallecarro.replaceRange(_detallecarro.indexOf(det), _detallecarro.indexOf(det)+1, [deti]);
+    
       }else{
         _detallecarro.add(det);
       }
@@ -26,14 +27,16 @@ class DetalleCarroProvider with ChangeNotifier{
     }*/
 
     void updateCantida(DetalleCarroCompra det){
-      DetalleCarroCompra deto = DetalleCarroCompra(det.iidDetalleCompra,det.icantidad-1,det.estado,det.producto);
-     // _detallecarro.replaceRange(det, end, [deto]);
+      DetalleCarroCompra deto = DetalleCarroCompra(det.icantidad-1,det.estado,det.producto);
      if(deto.icantidad==0){
        print(det.icantidad);
        _detallecarro.remove(det);
      }else{
-      _detallecarro.remove(det);
-      _detallecarro.add(deto);
+      /*_detallecarro.remove(det);
+      _detallecarro.add(deto);*/
+      print(_detallecarro.indexOf(det));
+       _detallecarro.replaceRange(_detallecarro.indexOf(det), _detallecarro.indexOf(det)+1, [deto]);
+    
      }
      
       notifyListeners();

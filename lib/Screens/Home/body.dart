@@ -34,7 +34,7 @@ class _BodyState extends State<Body> {
         elevation: 0.0,
         leading: IconButton(
           icon: Icon(
-            Icons.supervised_user_circle_sharp,
+            Icons.location_on,
             color: Colors.black,
         ), 
         onPressed: (){

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Provider/DetalleCarroProvider.dart';
 import 'package:flutter_application_1/Screens/Checkout/custom_dialog_box.dart';
@@ -12,6 +13,20 @@ class Checkout extends StatefulWidget {
 }
 
 class _CheckoutState extends State<Checkout> {
+  var now = DateTime.now();
+  
+  String _value = '';
+
+  Future _selectDate() async {
+    DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: new DateTime.now(),
+        firstDate: new DateTime(2020),
+        lastDate: new DateTime(20100)
+    );
+    if(picked != null) setState(() => _value = picked.toString());
+  }
+
   @override
   Widget build(BuildContext context) {
         final _detalleCarroProvider = Provider.of<DetalleCarroProvider>(context);
@@ -51,7 +66,6 @@ class _CheckoutState extends State<Checkout> {
                   ),
                   Row(
                     children: [
-                      
                       Container(
                         height: 50.0,
                         width: MediaQuery.of(context).size.width/1.5,
@@ -64,7 +78,7 @@ class _CheckoutState extends State<Checkout> {
                         ),
                         child: Text("Mi dirección",
                         style: TextStyle(
-                          color: Colors.black54,
+                          color: Colors.black,
                           fontSize: 20.0
                         ),),
                       ),
@@ -78,7 +92,7 @@ class _CheckoutState extends State<Checkout> {
                               shape: CircleBorder(),
                             ),
                             child: IconButton(
-                              icon: const Icon(Icons.maps_ugc_outlined),
+                              icon: const Icon(Icons.add_location_alt_sharp),
                               color: Colors.white,
                               onPressed: () {
                                 
@@ -89,6 +103,78 @@ class _CheckoutState extends State<Checkout> {
                       )
                     ],
                   ),
+                  Text("DIA DEL PEDIDO",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black54,
+                    fontSize: 15.0
+                  ),
+                ),
+                Container(
+                    height: 50.0,
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.only(top: 10.0, bottom: 15.0),
+                    padding: const EdgeInsets.all(7.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      border: Border.all(color: Colors.black54, width: 2.0)
+                                  //border: BoxBorder()
+                    ),
+                    child: Text(now.toString(),
+                      style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0
+                    ),),
+                  ),
+                 
+                Text("DIA DE ENTREGA",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black54,
+                    fontSize: 15.0
+                  ),
+                ),             
+
+                Row(
+                    children: [
+                      Container(
+                        height: 50.0,
+                        width: MediaQuery.of(context).size.width/1.5,
+                        margin: const EdgeInsets.only(top: 10.0, bottom: 15.0),
+                        padding: const EdgeInsets.all(7.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          border: Border.all(color: Colors.black54, width: 2.0)
+                                      //border: BoxBorder()
+                        ),
+                        child: Text(_value,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0
+                        ),),
+                      ),
+                      SizedBox(width: 5.0),
+                      Material(
+                        color: Colors.white,
+                        child: Center(
+                          child: Ink(
+                            decoration: const ShapeDecoration(
+                              color: Colors.orange,
+                              shape: CircleBorder(),
+                            ),
+                            child: IconButton(
+                              icon: const Icon(Icons.calendar_today),
+                              color: Colors.white,
+                              onPressed: () {
+                                _selectDate();
+                              },
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+
                  Text("MÉTODO DE PAGO",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -108,7 +194,7 @@ class _CheckoutState extends State<Checkout> {
                     ),
                     child: Text("Contra Entrega",
                       style: TextStyle(
-                      color: Colors.orange,
+                      color: Colors.black,
                       fontSize: 20.0
                     ),),
                   ),
@@ -185,6 +271,9 @@ class _CheckoutState extends State<Checkout> {
                         ),
                       ),
                     onPressed: () {
+
+
+                      
                       showDialog(context: context,
                         builder: (BuildContext context){
                           return CustomDialogBox(
