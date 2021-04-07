@@ -4,6 +4,7 @@ import 'package:flutter_application_1/Routes/Routes.dart';
 import 'package:flutter_application_1/Screens/Carrito/Carro.dart';
 import 'package:flutter_application_1/Screens/Home/body.dart';
 import 'package:flutter_application_1/Screens/Home/inicio.dart';
+import 'package:flutter_application_1/Screens/Login/registrar.dart';
 import 'package:flutter_application_1/Screens/Producto/Producto.dart';
 import 'package:provider/provider.dart';
 import 'Provider/CatalogoProvider.dart';
