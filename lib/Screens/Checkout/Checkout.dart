@@ -271,9 +271,6 @@ class _CheckoutState extends State<Checkout> {
                         ),
                       ),
                     onPressed: () {
-
-
-                      
                       showDialog(context: context,
                         builder: (BuildContext context){
                           return CustomDialogBox(

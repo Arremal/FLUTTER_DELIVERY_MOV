@@ -25,7 +25,7 @@ void main() => runApp(
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Splash(),//Login(),
+      home: Login(),//Splash(),
       routes: <String, WidgetBuilder> {
         //'/a': (BuildContext context) => Producto(),
       },

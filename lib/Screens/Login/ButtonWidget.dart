@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Screens/Registrar/registrar.dart';
+import 'package:flutter_application_1/Screens/SplashScreen/SplashSreen.dart';
 
 class ButtonWidget extends StatelessWidget {
 
@@ -36,6 +38,9 @@ class ButtonWidget extends StatelessWidget {
               ),
             ),
           ),
+          onTap: (){
+            Navigator.push( context, MaterialPageRoute(builder: (context) => Registrar()));
+          },
         ),
       ),
     );

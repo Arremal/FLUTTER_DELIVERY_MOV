@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Screens/SplashScreen/SplashSreen.dart';
 
 import 'ButtonWidget.dart';
 import 'TextFieldWidget.dart';
@@ -85,10 +86,31 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: 20.0,
                 ),
-                ButtonWidget(
+                /*ButtonWidget(
                     title: 'Ingresar',
                     hasBorder: false
-                ),
+                ),*/
+                Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height*0.08,
+                    child: RaisedButton(
+                      textColor: Colors.white,
+                      color: Colors.orange,
+                      child: Text("Ingresar",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16.0
+                        ),
+                      ),
+                    onPressed: () {
+                      Navigator.push( context, MaterialPageRoute(builder: (context) => Splash()));
+                    },
+                    shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(10.0),
+                    ),
+                   ),
+
+            ),
                 SizedBox(
                   height: 10.0,
                 ),
