@@ -93,16 +93,8 @@ class _ProductoState extends State<Producto> {
               e['iidProducto'],e['dprecio'],e['snombre'],e['sdescripcion']
             ));
             }
-            print("primero");
-            print("primero ${u.length}");
+           
             _catalogProvider.todoProducto(u);
-
-          
-
-
-
-
-
 
             return GridView.builder(
               physics: ScrollPhysics(),
@@ -160,10 +152,11 @@ class _ProductoState extends State<Producto> {
                                  //_catalogProvider.removeFromCatalogo(u[index]);
                                 // _carritoProvider.removeFromCatalogo(1,1,1,u[index]);
                                 } else {
+                                  print("fffffffffffff");
+                                  print(widget.todo);
                                 _catalogProvider.addToCatalogo(u[index]);
                                 DetalleCarroCompra det = DetalleCarroCompra(1,1,u[index]);
                                 _carritoProvider.addCarrito(det);
-                                print('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu');
                                 }
                                 setState(() {
                                   u[index].toggleAdded();

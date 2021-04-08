@@ -56,6 +56,7 @@ import 'package:provider/provider.dart';
                           onPressed: () {
                             Navigator.push( context, MaterialPageRoute(builder: (context) => Producto(todo: snapshot.data[index]['iidTienda'],)));
                             
+                            //Navigator.push( context, MaterialPageRoute(builder: (context) => Producto(todo: snapshot.data[index],)));
 
                             //_catalogProvider.addToCatalogo(productoModel);
                             //RouteSettings(arguments: ProductoModel())

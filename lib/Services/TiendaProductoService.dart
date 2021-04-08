@@ -14,7 +14,7 @@ Future<List<dynamic>> fetchTiendaProducto() async{
   final response = await http.get(url);
   if(response.statusCode == 200){
     final data = json.decode(response.body);  
-    print(data['aaData']);
+    print(data['aaData'][1]['istock']);
     return  data['aaData'];   
   }else{
     throw Exception('Fallo que pena');
