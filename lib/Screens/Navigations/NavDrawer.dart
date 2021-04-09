@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/Home/TexiInformacion.dart';
 import 'package:flutter_application_1/Screens/Producto/Producto.dart';
+import 'package:flutter_application_1/Screens/Ubicacion/Direccion.dart';
 import 'package:flutter_application_1/Screens/Usuario/Usuario.dart';
 
 class NavDrawer extends StatelessWidget {
@@ -127,6 +128,27 @@ class NavDrawer extends StatelessWidget {
                 ),
               ),
             ),
+            Padding(
+          padding: const EdgeInsets.only(left: 15.0, bottom: 5.0),
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    bottomLeft: Radius.circular(40))),
+            child: ListTile(
+              leading: Icon(Icons.add_location_rounded),
+              title: Text('Direcciones'),
+              onTap: () => {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return Direccion();
+                  // return Ubicacion();
+                }))
+              },
+            ),
+          ),
+        ),
           ],
         ),
     );
