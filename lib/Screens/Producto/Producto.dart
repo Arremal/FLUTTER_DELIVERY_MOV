@@ -4,6 +4,7 @@ import 'package:flutter_application_1/Models/ProductoModel.dart';
 import 'package:flutter_application_1/Provider/CatalogoProvider.dart';
 import 'package:flutter_application_1/Provider/DetalleCarroProvider.dart';
 import 'package:flutter_application_1/Screens/Carrito/Carro.dart';
+import 'package:flutter_application_1/Screens/Checkout/custom_dialog_box.dart';
 import 'package:flutter_application_1/Services/ProductoService.dart';
 import 'package:flutter_application_1/Services/TiendaProductoService.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -136,21 +137,66 @@ class _ProductoState extends State<Producto> {
                            
                           ),
                         ),
-                        IconButton(
+
+
+                        Padding(
+                          padding: const EdgeInsets.only(right:20.0,left: 20.0, top: 8.0),
+                          child: Container( 
+                            width: MediaQuery.of(context).size.width,
+                            height: 30.0,
+                            child: RaisedButton(
+                              textColor: Colors.white,
+                              color: Color(0xFFFF6B01),
+                              child: Text("Agregar",
+                                style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16.0
+                                ),
+                              ),
+                              onPressed: () {
+                               /* print(u[index]);
+                                 print(_carritoProvider.detallecarro[index].producto);
+                                 print(_catalogProvider.catalogo.contains(u[index]));
+*/
+                                if (_catalogProvider.catalogo.contains(u[index])==true){
+                                  print("wwwwwwwwwwwwwww");
+                                  print(_carritoProvider.detallecarro);
+                                  openSnackBarWithoutAction(context: context, u:'Este producto ya esta en el carrito',c:Colors.red);
+
+
+
+                                  } else {
+                                    openSnackBarWithoutAction(context: context, u:'Agregado',c:Colors.green);
+
+                                    print(widget.todo);
+                                  _catalogProvider.addToCatalogo(u[index]);
+                                  DetalleCarroCompra det = DetalleCarroCompra(1,1,u[index]);
+                                  _carritoProvider.addCarrito(det);
+                                  }
+                                  setState(() {
+                                    u[index].toggleAdded();
+                                    //_carritoProvider.detallecarro.;
+                                    //_carritoProvider.detallecarro[index].addCar =! _carritoProvider.detallecarro.contains(u[index]);
+                                  });
+                              },
+                            shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            ),
+                            ),
+
+                          ),
+                        ),
+
+
+                       /* IconButton(
                             icon: u[index].addCar
                               ? Icon(Icons.remove_circle, color: Colors.red,
                             )
                             : Icon(Icons.add_circle, color: Colors.green,
                             ),
-                            /*icon: _carritoProvider.detallecarro.contains(u[index])==true
-                              ? Icon(Icons.remove_circle, color: Colors.red,
-                            )
-                            : Icon(Icons.add_circle, color: Colors.green,
-                            ),*/
                             onPressed: (){
                                if (_carritoProvider.detallecarro.contains(u[index])==true){
-                                 //_catalogProvider.removeFromCatalogo(u[index]);
-                                // _carritoProvider.removeFromCatalogo(1,1,1,u[index]);
+                               
                                 } else {
                                   print("fffffffffffff");
                                   print(widget.todo);
@@ -160,11 +206,9 @@ class _ProductoState extends State<Producto> {
                                 }
                                 setState(() {
                                   u[index].toggleAdded();
-                                  //_carritoProvider.detallecarro.;
-                                  //_carritoProvider.detallecarro[index].addCar =! _carritoProvider.detallecarro.contains(u[index]);
-                                });
+                                 });
                             }
-                          )  
+                          )  */
                         
                       ]
                     ),
@@ -188,7 +232,20 @@ class _ProductoState extends State<Producto> {
   }
 }
 
+void openSnackBarWithoutAction({@required BuildContext context, String u, Color c}) {
+    final snackBar = SnackBar(
+      content: Text(u),
+      backgroundColor: c,
+      duration: Duration(seconds: 2),
+    );
 
+    _displaySnackBar(context: context, snackBar: snackBar);
+  }
+
+void _displaySnackBar(
+      {@required BuildContext context, @required SnackBar snackBar}) {
+    Scaffold.of(context).showSnackBar(snackBar);
+  }
 /*class Producto extends StatefulWidget {
   static const String routeName = '/Producto';
   final int todo;

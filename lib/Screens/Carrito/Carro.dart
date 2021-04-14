@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Models/ProductoModel.dart';
 import 'package:flutter_application_1/Provider/CatalogoProvider.dart';
 import 'package:flutter_application_1/Provider/DetalleCarroProvider.dart';
 import 'package:flutter_application_1/Screens/Checkout/Checkout.dart';
@@ -17,7 +18,7 @@ class _CarroState extends State<Carro> {
 
   @override
   Widget build(BuildContext context) {
-    //final _catalogoProvider = Provider.of<CatalogoProvider>(context);
+    final _catalogProvider = Provider.of<CatalogoProvider>(context);
     final _detalleCarroProvider = Provider.of<DetalleCarroProvider>(context);
 
     return Scaffold(
@@ -58,6 +59,7 @@ class _CarroState extends State<Carro> {
                     IconButton(icon: Icon(
                       Icons.add_circle,color: Color(0xFFFF6B01),),
                       onPressed: (){
+                        _catalogProvider.addToCatalogo(_detalleCarroProvider.detallecarro[index].producto);
                         _detalleCarroProvider.addCarrito(_detalleCarroProvider.detallecarro[index]);
                       }
                     ),
@@ -66,6 +68,7 @@ class _CarroState extends State<Carro> {
                     IconButton(
                       icon: Icon(Icons.do_not_disturb_on,color: Color(0xFFFF6B01),), 
                       onPressed: (){
+                        _catalogProvider.removeFromCatalogo(_detalleCarroProvider.detallecarro[index].producto);
                           _detalleCarroProvider.updateCantida(_detalleCarroProvider.detallecarro[index]);
                       }
                     )
@@ -108,20 +111,21 @@ class _CarroState extends State<Carro> {
             padding: const EdgeInsets.all(20.0),
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height*0.08,
+              height: MediaQuery.of(context).size.height*0.09,
                 child: RaisedButton(
                   textColor: Colors.white,
-                  color: Colors.black,
-                  child: Text("Checkout",
-                  style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.0
-                ),),
+                    color: Color(0xFFFF6B01),
+                    child: Text("Checkout",
+                    style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16.0
+                    ),
+                            ),
                   onPressed: () {
                     Navigator.push( context, MaterialPageRoute(builder: (context) => Checkout()));
                   },
                 shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(30.0),
+                  borderRadius: new BorderRadius.circular(10.0),
                 ),
   ),
 

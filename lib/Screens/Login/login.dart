@@ -39,24 +39,6 @@ class _LoginState extends State<Login> {
                     ],
                   ),
                 ),
-                /*Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "Login",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 40.0,
-
-                        ),
-                      ),
-                    ],
-                  ),
-                ),*/
-
-
                 TextFieldWidget(
                     hintText: 'Email', obscureData: false,
                     prefixIconData: Icons.mail_outline
@@ -86,16 +68,12 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: 20.0,
                 ),
-                /*ButtonWidget(
-                    title: 'Ingresar',
-                    hasBorder: false
-                ),*/
                 Container(
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height*0.08,
+                    height: MediaQuery.of(context).size.height*0.09,
                     child: RaisedButton(
                       textColor: Colors.white,
-                      color: Colors.orange,
+                      color: Color(0xFFFF6B01),
                       child: Text("Ingresar",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,

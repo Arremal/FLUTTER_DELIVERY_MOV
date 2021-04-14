@@ -2,8 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Provider/DetalleCarroProvider.dart';
 import 'package:flutter_application_1/Screens/Checkout/custom_dialog_box.dart';
+import 'package:flutter_application_1/Screens/Home/body.dart';
+import 'package:flutter_application_1/Screens/Home/cardListon.dart';
 import 'package:flutter_application_1/Utils/formatPrice.dart';
 import 'package:provider/provider.dart';
+
+import '../../main.dart';
 
 class Checkout extends StatefulWidget {
   Checkout({Key key}) : super(key: key);
@@ -47,6 +51,18 @@ class _CheckoutState extends State<Checkout> {
             Navigator.pop(context);
            }
         ),
+
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.home,color: Colors.black,),
+            onPressed: (){
+              Navigator.push( context, MaterialPageRoute(builder: (context) => BottomNavBar()));
+            }
+          ),
+          
+        ],
+
+
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 8.0),
@@ -57,10 +73,10 @@ class _CheckoutState extends State<Checkout> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
                children: [
-                  Text("DIRECCIÓN DELIVERY",
+                  Text("Dirección delivery",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.black54,
+                      color: Color(0xFFFF6B01),
                       fontSize: 15.0
                     ),
                   ),
@@ -73,7 +89,8 @@ class _CheckoutState extends State<Checkout> {
                         padding: const EdgeInsets.all(7.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          border: Border.all(color: Colors.black54, width: 2.0)
+                          color: Color(0xffF5F5F5),
+                          //border: Border.all(color: Colors.black54, width: 2.0)
                                       //border: BoxBorder()
                         ),
                         child: Text("Mi dirección",
@@ -88,7 +105,7 @@ class _CheckoutState extends State<Checkout> {
                         child: Center(
                           child: Ink(
                             decoration: const ShapeDecoration(
-                              color: Colors.orange,
+                              color:  Color(0xFFFF6B01),
                               shape: CircleBorder(),
                             ),
                             child: IconButton(
@@ -103,10 +120,10 @@ class _CheckoutState extends State<Checkout> {
                       )
                     ],
                   ),
-                  Text("DIA DEL PEDIDO",
+                  Text("Día del pedido",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black54,
+                    color: Color(0xFFFF6B01),
                     fontSize: 15.0
                   ),
                 ),
@@ -117,7 +134,8 @@ class _CheckoutState extends State<Checkout> {
                     padding: const EdgeInsets.all(7.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      border: Border.all(color: Colors.black54, width: 2.0)
+                      color: Color(0xffF5F5F5),
+                      //border: Border.all(color: Colors.black54, width: 2.0)
                                   //border: BoxBorder()
                     ),
                     child: Text(now.toString(),
@@ -127,11 +145,11 @@ class _CheckoutState extends State<Checkout> {
                     ),),
                   ),
                  
-                Text("DIA DE ENTREGA",
+                Text("Día de entrega",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black54,
-                    fontSize: 15.0
+                    color: Color(0xFFFF6B01),
+                    fontSize: 15,
                   ),
                 ),             
 
@@ -144,8 +162,7 @@ class _CheckoutState extends State<Checkout> {
                         padding: const EdgeInsets.all(7.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          border: Border.all(color: Colors.black54, width: 2.0)
-                                      //border: BoxBorder()
+                          color: Color(0xffF5F5F5),
                         ),
                         child: Text(_value,
                         style: TextStyle(
@@ -159,7 +176,7 @@ class _CheckoutState extends State<Checkout> {
                         child: Center(
                           child: Ink(
                             decoration: const ShapeDecoration(
-                              color: Colors.orange,
+                              color: Color(0xFFFF6B01),
                               shape: CircleBorder(),
                             ),
                             child: IconButton(
@@ -175,10 +192,10 @@ class _CheckoutState extends State<Checkout> {
                     ],
                   ),
 
-                 Text("MÉTODO DE PAGO",
+                 Text("Método de pago",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black54,
+                    color: Color(0xFFFF6B01),
                     fontSize: 15.0
                   ),
                 ),
@@ -189,7 +206,8 @@ class _CheckoutState extends State<Checkout> {
                     padding: const EdgeInsets.all(7.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      border: Border.all(color: Colors.black54, width: 2.0)
+                      //border: Border.all(color: Colors.black54, width: 2.0),
+                      color: Color(0xffF5F5F5),
                                   //border: BoxBorder()
                     ),
                     child: Text("Contra Entrega",
@@ -260,16 +278,16 @@ class _CheckoutState extends State<Checkout> {
               ),
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height*0.08,
+                    height: MediaQuery.of(context).size.height*0.09,
                     child: RaisedButton(
                       textColor: Colors.white,
-                      color: Colors.black,
+                      color: Color(0xFFFF6B01),
                       child: Text("Pagar",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0
-                        ),
+                      style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16.0
                       ),
+                            ),
                     onPressed: () {
                       showDialog(context: context,
                         builder: (BuildContext context){
@@ -282,7 +300,7 @@ class _CheckoutState extends State<Checkout> {
                 );
                     },
                     shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(30.0),
+                      borderRadius: new BorderRadius.circular(10.0),
                     ),
                    ),
 

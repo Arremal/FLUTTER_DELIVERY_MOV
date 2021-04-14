@@ -15,7 +15,7 @@ class _ProductoListState extends State<ProductoList> {
   int variable;
   @override
   void initState() {
-   fetchListaProductoXTienda(1);
+   //fetchListaProductoXTienda(1);
     super.initState();
   }
   @override

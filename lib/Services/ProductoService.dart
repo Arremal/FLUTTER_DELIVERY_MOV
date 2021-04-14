@@ -24,7 +24,7 @@ Future<List<dynamic>> fetchListaProductoXTienda(int id) async{
       e['iidProducto'],e['dprecio'],e['snombre'],e['sdescripcion']
     ));
 }
-  return  data['aaData'];
+  return data['aaData'];
   }else{
     throw Exception('Fallo que pena');
   }

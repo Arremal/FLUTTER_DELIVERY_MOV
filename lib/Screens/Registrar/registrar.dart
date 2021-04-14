@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/Checkout/custom_dialog_box.dart';
+import 'package:flutter_application_1/Screens/Login/TextFieldWidget.dart';
 
 class Registrar extends StatefulWidget {
   Registrar({Key key}) : super(key: key);
@@ -46,18 +47,6 @@ class _RegistrarUserState extends State<Registrar> {
                 top: 35.0, left: 35.0, right: 35.0, bottom: 35.0),
             child: Column(
               children: [
-                Positioned(
-                  left: Constants.padding,
-                  right: Constants.padding,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.transparent,
-                    radius: Constants.avatarRadius,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.all(
-                            Radius.circular(Constants.avatarRadius)),
-                        child: Image.asset("assets/man.png")),
-                  ),
-                ),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -71,212 +60,107 @@ class _RegistrarUserState extends State<Registrar> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "TU NOMBRE",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54,
-                              fontSize: 15.0),
+                        TextFieldWidget(
+                          hintText: 'Nombre', obscureData: false,
+                          prefixIconData: Icons.person
                         ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        TextFieldWidget(
+                          hintText: 'Primer Apellido', obscureData: false,
+                          prefixIconData: Icons.person
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        TextFieldWidget(
+                          hintText: 'Segundo Apellido', obscureData: false,
+                          prefixIconData: Icons.person
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        
                         Container(
-                            height: 50.0,
-                            width: MediaQuery.of(context).size.width,
-                            margin:
-                                const EdgeInsets.only(top: 10.0, bottom: 15.0),
-                            padding: const EdgeInsets.all(7.0),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                border: Border.all(
-                                    color: Colors.black54, width: 2.0)
-                                //border: BoxBorder()
-                                ),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Ingrese su nombre'),
-                            )),
-                        Text(
-                          "PRIMER APELLIDO",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54,
-                              fontSize: 15.0),
-                        ),
-                        Container(
-                            height: 50.0,
-                            width: MediaQuery.of(context).size.width,
-                            margin:
-                                const EdgeInsets.only(top: 10.0, bottom: 15.0),
-                            padding: const EdgeInsets.all(7.0),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                border: Border.all(
-                                    color: Colors.black54, width: 2.0)
-                                //border: BoxBorder()
-                                ),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Ingrese su primer apellido'),
-                            )),
-                        Text(
-                          "SEGUNDO APELLIDO",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54,
-                              fontSize: 15.0),
-                        ),
-                        Container(
-                            height: 50.0,
-                            width: MediaQuery.of(context).size.width,
-                            margin:
-                                const EdgeInsets.only(top: 10.0, bottom: 15.0),
-                            padding: const EdgeInsets.all(7.0),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                border: Border.all(
-                                    color: Colors.black54, width: 2.0)
-                                //border: BoxBorder()
-                                ),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Ingrese su segundo apellido'),
-                            )),
-                        Text(
-                          "GENERO",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54,
-                              fontSize: 15.0),
-                        ),
-                        DropdownButton(
-                          hint: Text(
-                            "---Seleccione el Genero---",
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
+                          padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                          decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Color(0xffF5F5F5),
+                          //border: Border.all()
                           ),
-                          dropdownColor: Colors.white,
-                          icon: Icon(Icons.arrow_drop_down),
-                          iconSize: 36.0,
-                          value: valueChoose,
-                          onChanged: (newValue) {
-                            setState(() {
-                              valueChoose = newValue;
-                            });
-                          },
-                          items: listItem.map((valueItem) {
-                            return DropdownMenuItem(
-                              value: valueItem,
-                              child: Text(
-                                valueItem,
-                                style: TextStyle(
-                                  color: Colors.black87,
-                                ),
+                          child: DropdownButton(
+                            hint: Text(
+                              "Genero",
+                              style: TextStyle(
+                                color:  Color(0xFFFF6B01),
                               ),
-                            );
-                          }).toList(),
-                        ),
-                        Text(
-                          "TELEFONO",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54,
-                              fontSize: 15.0),
-                        ),
-                        Container(
-                            height: 50.0,
-                            width: MediaQuery.of(context).size.width,
-                            margin:
-                                const EdgeInsets.only(top: 10.0, bottom: 15.0),
-                            padding: const EdgeInsets.all(7.0),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                border: Border.all(
-                                    color: Colors.black54, width: 2.0)),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Ingrese su telefono'),
-                            )),
-                        Text(
-                          "TU EMAIL",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54,
-                              fontSize: 15.0),
-                        ),
-                        Container(
-                            height: 50.0,
-                            width: MediaQuery.of(context).size.width,
-                            margin:
-                                const EdgeInsets.only(top: 10.0, bottom: 15.0),
-                            padding: const EdgeInsets.all(7.0),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                border: Border.all(
-                                    color: Colors.black54, width: 2.0)
-                                //border: BoxBorder()
+                            ),
+                            icon: Icon(Icons.arrow_drop_down),
+                            iconSize: 36.0,
+                            value: valueChoose,
+                            onChanged: (newValue) {
+                              setState(() {
+                                valueChoose = newValue;
+                              });
+                            },
+                            items: listItem.map((valueItem) {
+                              return DropdownMenuItem(
+                                value: valueItem,
+                                child: Text(
+                                  valueItem,
+                                  style: TextStyle(
+                                    color: Colors.black87,
+                                  ),
                                 ),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Ingrese tu correo electronico'),
-                            )),
-                        Text(
-                          "TU CONTRASEÑA",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54,
-                              fontSize: 15.0),
+                              );
+                            }).toList(),
+                          ),
                         ),
-                        Container(
-                            height: 50.0,
-                            width: MediaQuery.of(context).size.width,
-                            margin:
-                                const EdgeInsets.only(top: 10.0, bottom: 15.0),
-                            padding: const EdgeInsets.all(8.0),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                border: Border.all(
-                                    color: Colors.black54, width: 2.0)
-                                //border: BoxBorder()
-                                ),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: '********'),
-                            )),
-                        Container(
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        TextFieldWidget(
+                          hintText: 'Teléfono', obscureData: false,
+                          prefixIconData: Icons.phone
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        TextFieldWidget(
+                          hintText: 'Email', obscureData: false,
+                          prefixIconData: Icons.mail_outline
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        TextFieldWidget(
+                          hintText: 'Contraseña', obscureData: false,
+                          prefixIconData: Icons.lock_outline
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Container( 
                           width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.08,
+                          height: MediaQuery.of(context).size.height*0.09,
                           child: RaisedButton(
                             textColor: Colors.white,
-                            color: Colors.black,
-                            child: Text(
-                              "Registrarse",
+                            color: Color(0xFFFF6B01),
+                            child: Text("Registrar",
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20.0),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16.0
+                              ),
                             ),
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) {
-                                  return Registrar();
-                                }),
-                              );
+                              Navigator.push( context, MaterialPageRoute(builder: (context) => Registrar()));
                             },
-                            shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(30.0),
-                            ),
+                          shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(10.0),
                           ),
+                          ),
+
                         ),
                       ],
                     ),

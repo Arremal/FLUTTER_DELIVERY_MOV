@@ -28,22 +28,55 @@ class _UsuarioState extends State<Usuario> {
            }
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 35.0, left: 35.0, right: 35.0, bottom: 35.0),
-        child: Column(
+      body: ListView(
+        scrollDirection: Axis.vertical,
           children: [
-            Positioned(
-              left: Constants.padding,
-            right: Constants.padding,
-            child: CircleAvatar(
-              backgroundColor: Colors.transparent,
-              radius: Constants.avatarRadius,
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(Constants.avatarRadius)),
-                  child: Image.asset("assets/man.png")
-              ),
+            Stack(
+              children: [
+                /*Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/loki.jpg'),
+                      fit: BoxFit.fitWidth,
+                    ),
+                  ),
+                ),*/
+
+
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height*0.3,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: AssetImage("assets/loki.jpg")
+                    ),
+                  )
+                ),
+                  
+                Positioned(
+                  right: 100.0,
+                  bottom: 0.0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                       borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                       color: Color(0xFFFF6B01),
+                    ),
+                    
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.add_a_photo,
+                        color: Colors.white,), onPressed: () {  },
+                
+                ),
+                  ),
+                )
+              ],
+              
+
             ),
-        ),
+            
+            
             Container(
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -55,10 +88,10 @@ class _UsuarioState extends State<Usuario> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     
-                    Text("TU EMAIL",
+                    Text("Mi email",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black54,
+                        color: Color(0xFFFF6B01),
                         fontSize: 15.0
                       ),
                     ),
@@ -69,7 +102,8 @@ class _UsuarioState extends State<Usuario> {
                     padding: const EdgeInsets.all(7.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      border: Border.all(color: Colors.black54, width: 2.0)
+                      color: Color(0xffF5F5F5),
+                      //border: Border.all(color: Colors.black54, width: 2.0)
                                   //border: BoxBorder()
                     ),
                     child: TextField(
@@ -81,10 +115,10 @@ class _UsuarioState extends State<Usuario> {
                     ),
 
 
-                    Text("TU CONTRASEÑA",
+                    Text("Mi contraseña",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black54,
+                        color: Color(0xFFFF6B01),
                         fontSize: 15.0
                       ),
                     ),
@@ -95,7 +129,8 @@ class _UsuarioState extends State<Usuario> {
                     padding: const EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      border: Border.all(color: Colors.black54, width: 2.0)
+                      color: Color(0xffF5F5F5),
+                     // border: Border.all(color: Colors.black54, width: 2.0)
                                   //border: BoxBorder()
                     ),
                     child: TextField(
@@ -107,24 +142,14 @@ class _UsuarioState extends State<Usuario> {
                     ),
 
 
-                    Text("TU CELULAR",
+                    Text("Mi celular",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black54,
+                        color: Color(0xFFFF6B01),
                         fontSize: 15.0
                       ),
                     ),
-
-                    /*TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Celular',
-                        focusColor: Colors.black54,
-                        //focusedBorder: Colors.black54
-                      ),
-
-                    ),*/
-
-                    
+                  
                     Container(
                     height: 50.0,
                     width: MediaQuery.of(context).size.width,
@@ -132,7 +157,8 @@ class _UsuarioState extends State<Usuario> {
                     padding: const EdgeInsets.all(6.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      border: Border.all(color: Colors.black54, width: 2.0)
+                      color: Color(0xffF5F5F5),
+                      //border: Border.all(color: Colors.black54, width: 2.0)
                                   //border: BoxBorder()
                     ),
                     child: TextField(
@@ -145,10 +171,10 @@ class _UsuarioState extends State<Usuario> {
 
                     Container(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height*0.08,
+                        height: MediaQuery.of(context).size.height*0.09,
                         child: RaisedButton(
                           textColor: Colors.white,
-                          color: Colors.black,
+                          color: Color(0xFFFF6B01),
                           child: Text("Actualizar",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -167,7 +193,7 @@ class _UsuarioState extends State<Usuario> {
                     );
                         },
                         shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0),
+                          borderRadius: new BorderRadius.circular(10.0),
                         ),
                        ),
 
@@ -178,7 +204,6 @@ class _UsuarioState extends State<Usuario> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

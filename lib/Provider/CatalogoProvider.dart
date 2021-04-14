@@ -22,6 +22,7 @@ class CatalogoProvider with ChangeNotifier{
   void todoProducto(List<ProductoModel> productoModel){
   }
 
+    
 
   
 }
